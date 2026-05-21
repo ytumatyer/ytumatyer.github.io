@@ -733,8 +733,8 @@ function searchExam() {
                     <div style="border-top: 1px solid #edf2f7; padding: 15px 20px; color: #4a5568; font-size: 13px; line-height: 1.6;">
                         <div style="padding: 12px; background: #fffaf0; border-radius: 8px; border-left: 4px solid #f6ad55;">
                             <p style="margin: 0; font-weight: 600; color: #7b341e;">NOT / NOTE:</p>
-                            <p style="margin: 4px 0 0 0;">Bu sınav için kişiye özel sınıf atanmamıştır. Yukarıda ilan edilen dersliklerdeki boş sıralara yerleşebilirsiniz.</p>
-                            <p style="margin: 4px 0 0 0; color: #718096; font-style: italic; font-size: 12px;">No specific classroom has been assigned for this exam. You may take any available seat in the exam rooms listed above.</p>
+                            <p style="margin: 4px 0 0 0;">Bu sınav için kişiye özel sınıf tanımlanmamıştır. Yukarıda ilan edilen sınav salonlarındaki boş sıralara oturabilirsiniz.</p>
+                            <p style="margin: 4px 0 0 0; color: #718096; font-style: italic; font-size: 12px;">No individual exam halls are assigned for this exam. You may take any available seat in the exam halls specified above.</p>
                         </div>
                     </div>
                 `;
@@ -803,36 +803,58 @@ function searchExam() {
                     </div>
                 `;
             } else {
-                sonucDiv.className = "hata";
-                sonucDiv.innerHTML = `
-                    <div style="text-align: center; padding: 10px;">
-                        <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
-                            🔍 Kayıt Bulunamadı / Record Not Found
-                        </strong>
-                        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
-                            Lütfen numaranızı ve dersinizi kontrol ediniz.
-                        </span>
-                        <br>
-                        <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
-                            Please check your student ID and course.
-                        </span>
-                    </div>
+    sonucDiv.className = "hata";
+    sonucDiv.innerHTML = `
+        <div style="text-align: center; padding: 10px;">
+            <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
+                🔍 Kayıt Bulunamadı / Record Not Found
+            </strong>
+            <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
+                Lütfen numaranızı ve dersinizi kontrol ediniz.
+            </span>
+            <br>
+            <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
+                Please check your student ID and course.
+            </span>
+        </div>
 
-                    <div style="margin-top: 15px; background: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
-                        <p style="margin: 0 0 4px 0; color: #2d3748; font-weight: 600;">
-                            ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
-                        </p>
-                        <p style="margin: 0; font-style: italic; color: #718096; font-size: 12px; border-top: 1px dashed #feb2b2; margin-top: 6px; padding-top: 6px;">
-                            If your information is correct but you still see this warning, please report the issue to <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-style: normal; font-weight: 600; text-decoration: underline;">matblm@yildiz.edu.tr</a>.
-                        </p>
-                    </div>
-                `;
-            }
-        },
-        error: function() {
-            alert("Seçtiğiniz sınav için henüz derslikler sisteme yüklenmedi. Lütfen daha sonra tekrar kontrol ediniz. \n\nClassrooms have not been uploaded for the selected exam yet. Please check back later.");
-        }
-    });
+        <div style="margin-top: 15px; background: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
+            <p style="margin: 0 0 4px 0; color: #2d3748; font-weight: 600;">
+                ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
+            </p>
+            <p style="margin: 0; font-style: italic; color: #718096; font-size: 12px; border-top: 1px dashed #feb2b2; margin-top: 6px; padding-top: 6px;">
+                If your information is correct but you still see this warning, please report the issue to <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-style: normal; font-weight: 600; text-decoration: underline;">matblm@yildiz.edu.tr</a>.
+            </p>
+        </div>
+    `;
+}
+},
+error: function() {
+    // 1. Önce div'in sınıfını 'hata' yapıyoruz ve görünür kılıyoruz
+    sonucDiv.className = "hata";
+    sonucDiv.style.display = "block"; // Eğer varsayılan olarak gizliyse açılması için
+    
+    // 2. Alert yerine şık HTML içeriğimizi basıyoruz
+    sonucDiv.innerHTML = `
+        <div style="text-align: center; padding: 10px;">
+            <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
+                ⏳ Derslikler Henüz Yüklenmedi / Not Uploaded Yet
+            </strong>
+            <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
+                Seçtiğiniz sınav için henüz derslikler sisteme yüklenmedi.
+            </span>
+            <br>
+            <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; margin-top: 2px;">
+                Lütfen daha sonra tekrar kontrol ediniz.
+            </span>
+            <hr style="border: 0; border-top: 1px dashed #feb2b2; margin: 12px 0;">
+            <span style="font-size: 0.85rem; color: #718096; font-style: italic; display: block; line-height: 1.4;">
+                Exam halls have not been uploaded for the selected exam yet.<br>Please check back later.
+            </span>
+        </div>
+    `;
+}
+});
 }
 
 

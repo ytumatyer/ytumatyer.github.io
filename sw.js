@@ -1,4 +1,4 @@
-const CACHE_NAME = 'matyer-v2.4'; 
+const CACHE_NAME = 'matyer-v1.0'; 
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

@@ -960,7 +960,7 @@ function searchExam() {
         const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
         const data = await res.json();
 
-        counterEl.innerText = "Bugünkü tekil ziyaretçi: " + data.count;
+        counterEl.innerText = "Bugünkü sorgulama sayısı: " + data.count;
       } catch (err) {
         console.error("counter error:", err);
         counterEl.innerText = "Sayaç yüklenemedi";

@@ -476,7 +476,7 @@
     © 2026 YTÜ Matematik Bölümü <span style="font-style: normal; font-weight: bold; margin: 0 4px;">|</span> <span class="v-text">v1.0</span>
 </span>
     </div>
-
+<div id="counter">Yükleniyor...</div>
 </div>
 
 
@@ -948,6 +948,24 @@ function searchExam() {
 }
 
 
+
+
+ (function () {
+    const counterEl = document.getElementById("counter");
+    if (!counterEl) return;
+
+    window.addEventListener("load", async () => {
+      try {
+        const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
+        const data = await res.json();
+
+        counterEl.innerText = "Bugünkü tekil ziyaretçi: " + data.count;
+      } catch (err) {
+        console.error("counter error:", err);
+        counterEl.innerText = "Sayaç yüklenemedi";
+      }
+    });
+  })();
 
 
   </script>

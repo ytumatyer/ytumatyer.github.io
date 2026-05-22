@@ -950,10 +950,22 @@ function searchExam() {
 </script>
 
 
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "5fda34daf6d44c68a3e4a376534bc087"}'></script><!-- End Cloudflare Web Analytics -->
 
 
 
+<div id="counter">Yükleniyor...</div>
+
+<script>
+async function hitCounter() {
+  const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
+  const data = await res.json();
+
+  document.getElementById("counter").innerText =
+    "Bugünkü tekil ziyaretçi: " + data.count;
+}
+
+hitCounter();
+</script>
 
 </body>
 </html>

@@ -949,6 +949,31 @@ function searchExam() {
 
 
 
+<div id="counter">Yükleniyor...</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
+
+    const text = await res.text(); // JSON zorlamıyoruz
+
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      throw new Error("JSON değil: " + text);
+    }
+
+    document.getElementById("counter").innerText =
+      "Bugünkü tekil ziyaretçi: " + data.count;
+
+  } catch (err) {
+    console.error(err);
+    document.getElementById("counter").innerText =
+      "Sayaç hatası";
+  }
+});
 </script>
 
 </body>

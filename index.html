@@ -21,54 +21,6 @@
     box-sizing: border-box;
 }
 
-/* Varsayılan Açık Tema Renkleri */
-:root {
-    --bg-primary: #ffffff;
-    --text-primary: #2d3748;
-    --text-secondary: #718096;
-    --box-bg-light: #f8fafc;
-    --box-border-light: #edf2f7;
-    --box-bg-blue: #ebf8ff;
-    --box-border-blue: #bee3f8;
-    --text-blue: #2c5282;
-    --box-bg-gray: #f7fafc;
-    --box-border-gray: #e2e8f0;
-    --box-bg-red: #fff5f5;
-    --box-border-red: #feb2b2;
-    --text-red: #c53030;
-    --box-bg-orange: #fffaf0;
-    --box-border-orange: #feebc8;
-    --text-orange: #dd6b20;
-    --border-color: #edf2f7;
-}
-
-/* Karanlık Mod Devreye Girdiğinde Değişecek Renkler */
-body.dark-mode {
-    --bg-primary: #1e293b;        /* Slate 800 */
-    --text-primary: #f8fafc;      /* Slate 50 */
-    --text-secondary: #94a3b8;    /* Slate 400 */
-    --box-bg-light: #0f172a;      /* Slate 900 */
-    --box-border-light: #334155;  /* Slate 700 */
-    --box-bg-blue: #1e3a8a;       /* Mavi Koyu */
-    --box-border-blue: #2563eb;
-    --text-blue: #eff6ff;
-    --box-bg-gray: #334155;       /* Slate 700 */
-    --box-border-gray: #475569;
-    --box-bg-red: #4c1d95;        /* Koyu Kırmızı/Mor tonu */
-    --box-border-red: #7c3aed;
-    --text-red: #fee2e2;
-    --box-bg-orange: #7c2d12;     /* Koyu Turuncu */
-    --box-border-orange: #ea580c;
-    --text-orange: #ffedd5;
-    --border-color: #334155;
-}
-
-/* Onay ekranınız (terms-overlay) ve genel yazıların koyu modda okunması için */
-#terms-overlay, #scroll-box, .basarili, .hata {
-    background-color: var(--box-bg-light) !important;
-    color: var(--text-primary) !important;
-}
-
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             display: flex; 
@@ -374,98 +326,6 @@ body.dark-mode {
 }
 
 
-
-/* --- RENK DEĞİŞKENLERİ --- */
-:root {
-    /* Şu anki mevcut renkleriniz (Aydınlık Mod) */
-    --bg-sayfa: #ffffff;          /* Sorgu kısmında arka renk beyaz */
-    --bg-ust-bar: #1a73e8;        /* Üst bar rengi mavi */
-    --yazi-ust-bar: #ffffff;      /* Üst bar metin rengi beyaz */
-    --bg-kartlar: #f8fafc;        /* Sonuç kutularının iç arka planı */
-    --yazi-ana: #2d3748;          /* Temel metin rengi koyu füme */
-    --border-renk: #edf2f7;       /* Çizgi ve kenarlık renkleri */
-}
-
-/* Karanlık Mod Sınıfı Aktif Olduğunda Devreye Girecek Renkler */
-body.dark-mode {
-    --bg-sayfa: #0f172a;          /* Gözü yormayan derin gece mavisi/siyah */
-    --bg-ust-bar: #1e293b;        /* Karanlık moda uygun mat üst bar */
-    --yazi-ust-bar: #f1f5f9;      /* Üst bar metin rengi soft beyaz */
-    --bg-kartlar: #1e293b;        /* Sonuç kutuları bir ton açık antrasit */
-    --yazi-ana: #e2e8f0;          /* Metinler okunabilir açık gri/beyaz */
-    --border-renk: #334155;       /* Koyu moda uygun çizgiler */
-}
-
-/* --- MEVCUT ELEMENTLERİNİZİ DEĞİŞKENLERE BAĞLAMA --- */
-body {
-    background-color: var(--bg-sayfa);
-    color: var(--yazi-ana);
-    transition: background-color 0.3s ease, color 0.3s ease; /* Yumuşak geçiş efekti */
-}
-
-.header-bar, .ust-bar { /* Sitenizdeki üst barın sınıf adı neyse */
-    background-color: var(--bg-ust-bar);
-    color: var(--yazi-ust-bar);
-}
-
-/* Sınav sorgulama form kutusu ve sonuç kutuları */
-.sorgu-container, .kart, #result.basarili, #result.hata {
-    background-color: var(--bg-kartlar) !important;
-    border-color: var(--border-renk) !important;
-    color: var(--yazi-ana) !important;
-}
-
-/* --- KARANLIK MODDA BEYAZ KALAN ALANLARIN DÜZELTİLMESİ --- */
-
-body.dark-mode .container, 
-body.dark-mode .popup-box {
-    background: #1e293b; /* Koyu antrasit arka plan */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-body.dark-mode .popup-content {
-    background: #0f172a; /* Popup içindeki metin kutusunu daha da koyu yapar */
-    border-color: #334155;
-    color: #cbd5e1;
-}
-
-body.dark-mode .popup-box h2 {
-    color: #38bdf8; /* Başlığı soft bir mavi yapar */
-}
-
-body.dark-mode .checkbox-container {
-    color: #e2e8f0;
-}
-
-/* Seçim alanları ve girdi kutularının karanlık moda uyarlanması */
-body.dark-mode select, 
-body.dark-mode input {
-    background-color: #1e293b;
-    color: #ffffff;
-    border-color: #334155;
-}
-
-body.dark-mode select:focus, 
-body.dark-mode input:focus {
-    background-color: #0f172a;
-    border-color: #3182ce;
-}
-
-body.dark-mode label {
-    color: #e2e8f0; /* "Öğrenci Numarası" gibi başlıkları beyazlatır */
-}
-
-body.dark-mode .en-label {
-    color: #64748b; /* İngilizce alt yazıları matlaştırır */
-}
-
-/* Sonuç ekranındaki hata kutusunun karanlık mod ayarı */
-body.dark-mode #result.hata {
-    background: #451a03 !important; /* Koyu kırmızı/kahve tonu */
-    border-color: #7c2d12 !important;
-    color: #fca5a5 !important;
-}
-
 </style>
 </head>
 <body>
@@ -551,12 +411,6 @@ body.dark-mode #result.hata {
         <img src="logo.png" alt="MATyer Logo" class="logo-png">
     </div>
     
-<!-- Üst barınızın içine, sağ köşeye gelecek şekilde konumlandırabilirsiniz -->
-<button id="dark-mode-toggle" onclick="toggleDarkMode()" style="background: transparent; border: none; color: inherit; cursor: pointer; font-size: 1.2rem; padding: 5px 10px; line-height: 1;">
-    🌙
-</button>
-
-
     <!-- Sınav Türü Seçim Alanı -->
     <label for="examTypeSelect">
         SORGULANACAK SINAV
@@ -635,94 +489,73 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentIdGroup = document.getElementById("studentIdGroup");
     const examLanguageGroup = document.getElementById("examLanguageGroup");
 
-    // Tema Kontrolü
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        const metaColor = document.querySelector('meta[name="theme-color"]');
-        if (metaColor) metaColor.setAttribute('content', '#0f172a');
-    }
     
-    if (examSelect) {
-        examSelect.addEventListener("change", () => {
-            const val = examSelect.value;
-            
-            if(val === "mazeret" || val === "butunleme" || val === "mezuniyet") {
-                if(studentIdGroup) studentIdGroup.classList.add("gizli");
-            } else {
-                if(studentIdGroup) studentIdGroup.classList.remove("gizli");
-            }
+    // Sınav türü değişim kontrolü
+    examSelect.addEventListener("change", () => {
+        const val = examSelect.value;
+        
+        // Numara alanını gizle/göster
+        if(val === "mazeret" || val === "butunleme" || val === "mezuniyet") {
+            studentIdGroup.classList.add("gizli");
+        } else {
+            studentIdGroup.classList.remove("gizli");
+        }
 
-            if(val === "butunleme") {
-                if(examLanguageGroup) examLanguageGroup.classList.remove("gizli");
-            } else {
-                if(examLanguageGroup) examLanguageGroup.classList.add("gizli");
-                const langSelect = document.getElementById("examLanguageSelect");
-                if(langSelect) langSelect.value = "";
-            }
-        });
-    }
+        // Bütünleme seçildiyse görünür yap, yoksa gizle (Sadece sınıf yönetimi)
+        if(val === "butunleme") {
+            examLanguageGroup.classList.remove("gizli");
+        } else {
+            examLanguageGroup.classList.add("gizli");
+            document.getElementById("examLanguageSelect").value = ""; // Seçimi sıfırla
+        }
+    });
 
     function checkScroll() {
-        if (!scrollBox) return;
-        
-        const clientHeight = scrollBox.clientHeight;
-        const scrollHeight = scrollBox.scrollHeight;
-        const scrollTop = Math.ceil(scrollBox.scrollTop);
-        
-        const scrollIhtiyaciVarMi = scrollHeight > clientHeight;
-        const metinBittiMi = (scrollHeight - scrollTop) <= (clientHeight + 15);
+        const scrollIhtiyaciVarMi = scrollBox.scrollHeight > scrollBox.clientHeight;
+        const metinBittiMi = scrollBox.scrollHeight - scrollBox.scrollTop <= scrollBox.clientHeight + 10;
         
         if (!scrollIhtiyaciVarMi || metinBittiMi) {
-            if(checkboxContainer) checkboxContainer.classList.add("active");
-            if(confirmCheckbox) confirmCheckbox.disabled = false;
+            checkboxContainer.classList.add("active");
+            confirmCheckbox.disabled = false;
         }
     }
 
-    if (scrollBox) {
-        setTimeout(checkScroll, 150);
-        scrollBox.addEventListener("scroll", checkScroll);
-        window.addEventListener("resize", checkScroll); 
-    }
+    setTimeout(checkScroll, 100);
+    scrollBox.addEventListener("scroll", checkScroll);
 
-    if (confirmCheckbox && approveBtn) {
-        confirmCheckbox.addEventListener("change", () => {
-            approveBtn.disabled = !confirmCheckbox.checked;
-        });
-    }
+    confirmCheckbox.addEventListener("change", () => {
+        approveBtn.disabled = !confirmCheckbox.checked;
+    });
 
-    if (approveBtn && overlay && container) {
-        approveBtn.addEventListener("click", () => {
-            overlay.style.transition = "opacity 0.3s ease";
-            overlay.style.opacity = "0";
-            
-            setTimeout(() => {
-                overlay.style.display = "none";
-                container.style.display = "block"; 
-            }, 300);
-        });
-    }
+    approveBtn.addEventListener("click", () => {
+        overlay.style.transition = "opacity 0.3s ease";
+        overlay.style.opacity = "0";
+        
+        setTimeout(() => {
+            overlay.style.display = "none";
+            container.style.display = "block"; 
+        }, 300);
+    });
 });
 
 function searchExam() {
+    const examSelect = document.getElementById('examTypeSelect');
+    const courseSelect = document.getElementById('courseSelect');
+    const languageSelect = document.getElementById('examLanguageSelect');
+    
+    const examType = examSelect.value;
+    const dersKodu = courseSelect.value;
+    const examLanguage = languageSelect.value;
+    const noInput = document.getElementById('studentId');
+    const no = noInput.value.trim();
     const sonucDiv = document.getElementById('result');
-    if (!sonucDiv) return;
 
+    // Her yeni aramada eski kutu durumunu ve sınıflarını sıfırlıyoruz
     sonucDiv.className = "";
     sonucDiv.style.display = "none";
     sonucDiv.innerHTML = "";
 
-    const examSelect = document.getElementById('examTypeSelect');
-    const courseSelect = document.getElementById('courseSelect');
-    const languageSelect = document.getElementById('examLanguageSelect');
-    const noInput = document.getElementById('studentId');
-    
-    if(!examSelect || !courseSelect || !languageSelect || !noInput) return;
-
-    const examType = examSelect.value;
-    const dersKodu = courseSelect.value;
-    const examLanguage = languageSelect.value;
-    const no = noInput.value.trim();
+    // --- ALERT YERİNE HTML KUTUSU DÖNÜŞÜMLERİ ---
 
     if (!examType) { 
         sonucDiv.className = "hata";
@@ -732,11 +565,11 @@ function searchExam() {
                 <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
                     ⚠️ Eksik Seçim / Missing Selection
                 </strong>
-                <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
                     Lütfen bir sınav türü seçin.
                 </span>
                 <br>
-                <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
                     Please select an exam type.
                 </span>
             </div>
@@ -752,11 +585,11 @@ function searchExam() {
                 <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
                     🌐 Dil Seçimi Eksik / Language Selection Missing
                 </strong>
-                <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
                     Lütfen bütünleme sınavı için grup dilini seçin.
                 </span>
                 <br>
-                <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
                     Please select the exam group language for the resit exam.
                 </span>
             </div>
@@ -772,11 +605,11 @@ function searchExam() {
                 <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
                     📚 Ders Seçilmedi / Course Not Selected
                 </strong>
-                <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
                     Lütfen bir ders seçin.
                 </span>
                 <br>
-                <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
                     Please select a course.
                 </span>
             </div>
@@ -784,6 +617,7 @@ function searchExam() {
         return; 
     }
     
+    // Genel liste modu kontrolü
     const isGeneralMode = (examType === "mazeret" || examType === "butunleme" || examType === "mezuniyet");
     
     if (!isGeneralMode && !no) { 
@@ -794,11 +628,11 @@ function searchExam() {
                 <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
                     🆔 Öğrenci Numarası Eksik / Student ID Missing
                 </strong>
-                <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
                     Lütfen öğrenci numaranızı girin.
                 </span>
                 <br>
-                <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
                     Please enter your student ID.
                 </span>
             </div>
@@ -810,6 +644,7 @@ function searchExam() {
     const trSinavAdi = secilenMetin.split('/')[0].trim();
     const enSinavAdi = secilenMetin.split('/')[1] ? secilenMetin.split('/')[1].trim() : '';
 
+    // Dosya adını bütünleme durumuna göre dinamik yapılandırıyoruz
     let dosyaAdi = examType;
     if (examType === "butunleme") {
         dosyaAdi = `${examType}_${examLanguage}`;
@@ -839,9 +674,11 @@ function searchExam() {
 
             sonucDiv.style.display = "block";
             
+            // --- MOD 1: GENEL LİSTE MODU (Mazeret, Bütünleme, Mezuniyet) ---
             if (isGeneralMode) {
                 sonucDiv.className = "basarili";
 
+                // --- DERS ADINI OTOMATİK İKİ DİLLİ YAPMA SÖZLÜĞÜ ---
                 let trDersAdi = birlesikDersAdi; 
                 let enDersAdi = "";             
 
@@ -864,6 +701,7 @@ function searchExam() {
                     enDersAdi = "MAT1821 Mathematics";
                 }
 
+                // CSV'deki tüm benzersiz Fakülte ve Derslik ikililerini buluyoruz
                 const benzersizSalonlar = [];
                 const kontrolSeti = new Set();
 
@@ -882,96 +720,117 @@ function searchExam() {
                 let salonlarHTML = '';
                 benzersizSalonlar.forEach(s => {
                     salonlarHTML += `
-                        <div style="border-bottom: 1px dashed var(--box-border-red); padding: 10px 0; margin-bottom: 5px;">
-                            <small style="color: var(--text-secondary); font-size: 11px; font-weight: 600; display:block; text-transform:uppercase;">${s.fakulte || '-'}</small>
-                            <span style="font-size: 1.5rem; font-weight: 800; color: #e53e3e;">${s.derslik || '-'}</span>
+                        <div style="border-bottom: 1px dashed #e2e8f0; padding: 10px 0; margin-bottom: 5px;">
+                            <small style="color: #718096; font-size: 11px; font-weight: 600; display:block; text-transform:uppercase;">${s.fakulte || '-'}</small>
+                            <span style="font-size: 1.5rem; font-weight: 800; color: #c53030;">${s.derslik || '-'}</span>
                         </div>
                     `;
                 });
 
+                // --- SINAV TÜRÜNE GÖRE DİNAMİK METİN AYARLAMA ---
                 let uyariMetniTR = "";
                 let uyariMetniEN = "";
                 let formLinki = "";
 
                 switch(examType) {
                     case "mazeret":
-                        uyariMetniTR = `1. Mazeret sınavına sadece mazereti ilgili bölüm başkanlığınca kabul edilen öğrenciler girebilir.<br>2. Soru kitapçığı israfını önlemek ve gerekli planlamaları yapabilmek adına, sınava girecekseniz lütfen formu doldurunuz.`;
-                        uyariMetniEN = `1. Only students whose excuses are officially accepted by the relevant department administration may take the make-up exam.<br>2. To prevent the waste of question booklets and assist with the necessary planning, please fill out the form if you will take the exam.`;
+                        uyariMetniTR = `1. Mazeret sınavına sadece mazereti ilgili bölüm başkanlığınca kabul edilen öğrenciler girebilir.<br>
+                                        2. Soru kitapçığı israfını önlemek ve gerekli planlamaları yapabilmek adına, sınava girecekseniz lütfen formu doldurunuz.`;
+
+                        uyariMetniEN = `1. Only students whose excuses are officially accepted by the relevant department administration may take the make-up exam.<br>
+                                        2. To prevent the waste of question booklets and assist with the necessary planning, please fill out the form if you will take the exam.`;
                         formLinki = "https://forms.cloud.microsoft/r/QD3gzBKQWZ";
                         break;
+                        
                     case "butunleme":
-                        uyariMetniTR = `1. Final harf notu <span style="background: rgba(254,235,200,0.2); border: 1px solid var(--box-border-orange); padding:2px 4px; border-radius:4px; font-weight:700;">CC veya üzeri</span> olan öğrenciler bütünleme sınavına <span style="font-weight:700; color:#e53e3e;">giremezler</span>.<br>2. Kitapçık israfını önlemek adına, sınava kesin katılacaksaniz lütfen formu doldurunuz.`;
-                        uyariMetniEN = `1. Students with a final grade of CC or above are not allowed to take the resit exam.<br>2. To avoid booklet waste, please fill out the form only if you will definitely take the exam.`;
+                        uyariMetniTR = `1. Final harf notu <span style="background:#feebc8; padding:2px 4px; border-radius:4px; font-weight:700;">CC veya üzeri</span> olan öğrenciler bütünleme sınavına <span style="background:#feebc8; padding:2px 4px; border-radius:4px; font-weight:700;">giremezler</span>.<br>
+                                        2. Kitapçık israfını önlemek adına, sınava kesin katılacaksanız lütfen formu doldurunuz.`;
+                        uyariMetniEN = `1. Students with a final grade of CC or above are not allowed to take the resit exam.<br>
+                                        2. To avoid booklet waste, please fill out the form only if you will definitely take the exam.`;
                         formLinki = "https://forms.cloud.microsoft/r/QD3gzBKQWZ";
                         break;
+                        
                     case "mezuniyet":
-                        uyariMetniTR = `1. Mezuniyet sınavına sadece mezun olabilecek durumda olan öğrenciler katılabilir.<br>2. Katılım durumunuzu bildirmek ve soru kitapçığı planlamasına yardımcı olmak için lütfen formu doldurunuz.`;
-                        uyariMetniEN = `1. Only students eligible for graduation are allowed to take the graduation exam.<br>2. Please fill out the form to confirm your attendance and assist with question booklet planning.`;
+                        uyariMetniTR = `1. Mezuniyet sınavına sadece mezun olabilecek durumda olan öğrenciler katılabilir.<br>
+                                        2. Katılım durumunuzu bildirmek ve soru kitapçığı planlamasına yardımcı olmak için lütfen formu doldurunuz.`;
+                        uyariMetniEN = `1. Only students eligible for graduation are allowed to take the graduation exam.<br>
+                                        2. Please fill out the form to confirm your attendance and assist with question booklet planning.`;
                         formLinki = "https://forms.cloud.microsoft/r/QD3gzBKQWZ";
                         break;
                 }
 
                 sonucDiv.innerHTML = `
-                    <div style="display: flex; justify-content: space-around; margin: 20px 20px 15px 20px; padding: 12px; background: var(--box-bg-light); border-radius: 12px; border: 1px solid var(--box-border-light);">
+                    <div style="display: flex; justify-content: space-around; margin: 20px 20px 15px 20px; padding: 12px; background: #f8fafc; border-radius: 12px; border: 1px solid #edf2f7;">
                         <div>
-                            <small style="color: var(--text-secondary); display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">TARİH / DATE</small>
-                            <span style="font-weight: 700; color: var(--text-primary); font-size: 14px;">${sinavTarihi}</span>
+                            <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">TARİH / DATE</small>
+                            <span style="font-weight: 700; color: #2d3748; font-size: 14px;">${sinavTarihi}</span>
                         </div>
-                        <div style="border-left: 1px solid var(--box-border-light);"></div>
+                        <div style="border-left: 1px solid #e2e8f0;"></div>
                         <div>
-                            <small style="color: var(--text-secondary); display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">SAAT / TIME</small>
-                            <span style="font-weight: 700; color: var(--text-primary); font-size: 14px;">${sinavSaati}</span>
+                            <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">SAAT / TIME</small>
+                            <span style="font-weight: 700; color: #2d3748; font-size: 14px;">${sinavSaati}</span>
                         </div>
                     </div>
+
                     <div style="margin: 0 20px 20px 20px; text-align: center;">
-                        <div style="background: var(--box-bg-blue); padding: 15px; border-radius: 12px; border: 2px solid var(--box-border-blue); margin-bottom: 15px;">
-                            <small style="color: var(--text-blue); display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>
-                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-blue); line-height: 1.3;">
+                        <div style="background: #ebf8ff; padding: 15px; border-radius: 12px; border: 2px solid #bee3f8; margin-bottom: 15px;">
+                            <small style="color: #2b6cb0; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #2c5282; line-height: 1.3;">
                                 ${trDersAdi}
-                                ${enDersAdi ? `<br><span style="font-size: 0.95rem; color: var(--text-secondary); font-weight: 600; font-style: italic;">${enDersAdi}</span>` : ''}
+                                ${enDersAdi ? `<br><span style="font-size: 0.95rem; color: #718096; font-weight: 600; font-style: italic;">${enDersAdi}</span>` : ''}
                             </div>
                         </div>
-                        <div style="background: var(--box-bg-gray); padding: 12px; border-radius: 12px; border: 2px solid var(--box-border-gray); margin-bottom: 15px;">
-                            <small style="color: var(--text-primary); display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">SINAV / EXAM</small>
-                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); line-height: 1.3;">
+
+                        <div style="background: #f7fafc; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; margin-bottom: 15px;">
+                            <small style="color: #4a5568; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">SINAV / EXAM</small>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #4a5568; line-height: 1.3;">
                                 ${trSinavAdi.toLowerCase().includes('arasınav') || trSinavAdi.toLowerCase().includes('sınav') ? trSinavAdi : `${trSinavAdi} Sınavı`}
-                                ${enSinavAdi ? `<br><span style="font-size: 0.95rem; color: var(--text-secondary); font-weight: 600; font-style: italic;">${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}</span>` : ''}
+                                ${enSinavAdi ? `
+                                    <br><span style="font-size: 0.95rem; color: #a0aec0; font-weight: 600; font-style: italic;">
+                                        ${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}
+                                    </span>
+                                ` : ''}
                             </div>
                         </div>
-                        <div style="background: var(--box-bg-red); padding: 15px 20px 20px 20px; border-radius: 12px; border: 2px solid var(--box-border-red); margin-bottom: 20px;">
-                            <small style="color: var(--text-red); display: block; font-size: 11px; font-weight: 800; margin-bottom: 10px; letter-spacing: 1px;">SINAV SALONLARI / EXAM HALLS</small>
+
+                        <div style="background: #fff5f5; padding: 15px 20px 20px 20px; border-radius: 12px; border: 2px solid #feb2b2; margin-bottom: 20px;">
+                            <small style="color: #e53e3e; display: block; font-size: 11px; font-weight: 800; margin-bottom: 10px; letter-spacing: 1px;">SINAV SALONLARI / EXAM HALLS</small>
                             ${salonlarHTML}
                         </div>
                     </div>
-                    <div style="text-align: center; margin: -5px 0 25px 0; color: var(--text-orange); font-weight: 700; font-size: 13px;">
+
+                    <div style="text-align: center; margin: -5px 0 25px 0; color: #dd6b20; font-weight: 700; font-size: 13px; animation: pulseAnimation 2s infinite;">
                         👇 Lütfen sayfanın altındaki Katılım Formu'nu doldurunuz! 👇 <br>
-                        <span style="font-size: 11px; font-style: italic; color: var(--text-secondary); font-weight: 600;">Please fill out the Attendance Form located at the bottom!</span>
+                        <span style="font-size: 11px; font-style: italic; color: #b7791f; font-weight: 600;">Please fill out the Attendance Form located at the bottom!</span>
                     </div>
-                    <div style="margin: 0 20px 20px 20px; background: var(--box-bg-orange); border: 2px solid var(--box-border-orange); padding: 15px; border-radius: 12px; text-align: left;">
-                        <div style="color: var(--text-orange); font-weight: 800; font-size: 12px; letter-spacing: 0.5px; margin-bottom: 10px; text-transform: uppercase;">
+
+                    <div style="margin: 0 20px 20px 20px; background: #fffaf0; border: 2px solid #feebc8; padding: 15px; border-radius: 12px; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                        <div style="color: #dd6b20; font-weight: 800; font-size: 12px; letter-spacing: 0.5px; margin-bottom: 10px; text-transform: uppercase;">
                             ⚠️ ÖNEMLİ BİLGİLENDİRME & KATILIM FORMU
                         </div>
-                        <div style="font-size: 13px; color: var(--text-primary); line-height: 1.5; margin-bottom: 12px;">
+                        <div style="font-size: 13px; color: #2d3748; line-height: 1.5; margin-bottom: 12px;">
                             ${uyariMetniTR}
                         </div>
-                        <div style="font-size: 12px; color: var(--text-secondary); line-height: 1.4; font-style: italic; border-top: 1px dashed var(--box-border-orange); padding-top: 10px; margin-bottom: 15px;">
+                        <div style="font-size: 12px; color: #718096; line-height: 1.4; font-style: italic; border-top: 1px dashed #fbd38d; padding-top: 10px; margin-bottom: 15px;">
                             ${uyariMetniEN}
                         </div>
-                        <a href="${formLinki}" target="_blank" class="katilim-butonu" style="display: block; text-align: center; background: #dd6b20; color: white; text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">
+                        <a href="${formLinki}" target="_blank" class="katilim-butonu" style="display: block; text-align: center; background: #dd6b20; color: white; text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(221, 107, 32, 0.4); animation: pulseAnimation 2s infinite; transition: all 0.2s;">
                             📝 FORMU DOLDUR / FILL OUT THE FORM
                         </a>
                     </div>
-                    <div style="border-top: 1px solid var(--border-color); padding: 15px 20px; color: var(--text-primary); font-size: 13px; line-height: 1.6;">
-                        <div style="padding: 12px; background: var(--box-bg-orange); border-radius: 8px; border-left: 4px solid var(--box-border-orange);">
-                            <p style="margin: 0; font-weight: 600; color: var(--text-orange);">NOT / NOTE:</p>
+
+                    <div style="border-top: 1px solid #edf2f7; padding: 15px 20px; color: #4a5568; font-size: 13px; line-height: 1.6;">
+                        <div style="padding: 12px; background: #fffaf0; border-radius: 8px; border-left: 4px solid #f6ad55;">
+                            <p style="margin: 0; font-weight: 600; color: #7b341e;">NOT / NOTE:</p>
                             <p style="margin: 4px 0 0 0;">Bu sınav için kişiye özel sınıf tanımlanmamıştır. Yukarıda ilan edilen sınav salonlarındaki boş sıralara oturabilirsiniz.</p>
-                            <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-style: italic; font-size: 12px;">No individual exam halls are assigned for this exam. You may take any available seat in the exam halls specified above.</p>
+                            <p style="margin: 4px 0 0 0; color: #718096; font-style: italic; font-size: 12px;">No individual exam halls are assigned for this exam. You may take any available seat in the exam halls specified above.</p>
                         </div>
                     </div>
                 `;
-                return;
+                return; // KRİTİK: Genel mod bittiyse fonksiyon burada durmalı!
             }
 
+            // --- MOD 2: BİREYSEL SORGULAMA MODU (Arasınavlar ve Final) ---
             const student = temizListe.find(o => String(o.No).trim() === no);
             
             if (student) {
@@ -980,45 +839,55 @@ function searchExam() {
                 const dersGorselAdi = `${student.Kod || ''} ${student.Ders || ''}`.trim();
                 
                 sonucDiv.innerHTML = `
-                    <div style="text-align: center; border-bottom: 1px solid var(--border-color); padding: 20px 10px 10px 10px; margin-bottom: 20px;">
-                        <span style="font-size: 1.1rem; color: var(--text-primary);">Sayın / Dear</span><br>
+                    <div style="text-align: center; border-bottom: 1px solid #eee; padding: 20px 10px 10px 10px; margin-bottom: 20px;">
+                        <span style="font-size: 1.1rem; color: #2c3e50;">Sayın / Dear</span><br>
                         <strong style="font-size: 1.4rem; color: #1a73e8; text-transform: uppercase;">${tamAd}</strong>
                     </div>
-                    <div style="display: flex; justify-content: space-around; margin: 0 20px 20px 20px; padding: 10px; background: var(--box-bg-light); border-radius: 8px;">
+
+                    <div style="display: flex; justify-content: space-around; margin: 0 20px 20px 20px; padding: 10px; background: #f8fafc; border-radius: 8px;">
                         <div>
-                            <small style="color: var(--text-secondary); display: block; font-size: 10px; font-weight: bold;">TARİH / DATE</small>
-                            <span style="font-weight: 600; color: var(--text-primary);">${sinavTarihi}</span>
+                            <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold;">TARİH / DATE</small>
+                            <span style="font-weight: 600; color: #2d3748;">${sinavTarihi}</span>
                         </div>
-                        <div style="border-left: 1px solid var(--border-color);"></div>
+                        <div style="border-left: 1px solid #e2e8f0;"></div>
                         <div>
-                            <small style="color: var(--text-secondary); display: block; font-size: 10px; font-weight: bold;">SAAT / TIME</small>
-                            <span style="font-weight: 600; color: var(--text-primary);">${sinavSaati}</span>
+                            <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold;">SAAT / TIME</small>
+                            <span style="font-weight: 600; color: #2d3748;">${sinavSaati}</span>
                         </div>
                     </div>
+
                     <div style="margin: 0 20px 20px 20px; text-align: center;">
-                        <div style="background: var(--box-bg-blue); padding: 15px; border-radius: 12px; border: 2px solid var(--box-border-blue); margin-bottom: 15px;">
-                            <small style="color: var(--text-blue); display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>
-                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-blue); line-height: 1.3;">${dersGorselAdi}</div>
+                        <div style="background: #ebf8ff; padding: 15px; border-radius: 12px; border: 2px solid #bee3f8; margin-bottom: 15px;">
+                            <small style="color: #2b6cb0; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #2c5282; line-height: 1.3;">${dersGorselAdi}</div>
                         </div>
-                        <div style="background: var(--box-bg-gray); padding: 12px; border-radius: 12px; border: 2px solid var(--box-border-gray); margin-bottom: 15px;">
-                            <small style="color: var(--text-primary); display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">SINAV / EXAM</small>
-                            <div style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); line-height: 1.3;">
+
+                        <div style="background: #f7fafc; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; margin-bottom: 15px;">
+                            <small style="color: #4a5568; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">SINAV / EXAM</small>
+                            <div style="font-size: 1.1rem; font-weight: 700; color: #4a5568; line-height: 1.3;">
                                 ${trSinavAdi.toLowerCase().includes('arasınav') || trSinavAdi.toLowerCase().includes('sınav') ? trSinavAdi : `${trSinavAdi} Sınavı`}
-                                ${enSinavAdi ? `<br><span style="font-size: 0.95rem; color: var(--text-secondary); font-weight: 600; font-style: italic;">${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}</span>` : ''}
+                                ${enSinavAdi ? `
+                                    <br><span style="font-size: 0.95rem; color: #a0aec0; font-weight: 600; font-style: italic;">
+                                        ${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}
+                                    </span>
+                                ` : ''}
                             </div>
                         </div>
-                        <div style="background: var(--box-bg-red); padding: 20px; border-radius: 12px; border: 2px solid var(--box-border-red);">
-                            <small style="color: var(--text-red); display: block; font-size: 11px; font-weight: 800; margin-bottom: 0px; letter-spacing: 1px;">FAKÜLTE / FACULTY</small>                            
-                            <div style="font-size: 1rem; color: var(--text-primary); font-weight: 600; margin-bottom: 12px; line-height: 1.2;">${student.Fakulte || '-'}</div> 
-                            <small style="color: var(--text-red); display: block; font-size: 11px; font-weight: 800; margin-bottom: -5px; letter-spacing: 1px;">SINAV SALONU / EXAM HALL</small>
-                            <div style="font-size: 2.3rem; font-weight: 900; color: #e53e3e; line-height: 1; margin-top: 5px;">${student.Derslik || '-'}</div>
+
+                        <div style="background: #fff5f5; padding: 20px; border-radius: 12px; border: 2px solid #feb2b2;">
+                            <small style="color: #e53e3e; display: block; font-size: 11px; font-weight: 800; margin-bottom: 0px; letter-spacing: 1px;">FAKÜLTE / FACULTY</small>                            
+                            <div style="font-size: 1rem; color: #4a5568; font-weight: 600; margin-bottom: 12px; line-height: 1.2;">${student.Fakulte || '-'}</div> 
+                            
+                            <small style="color: #e53e3e; display: block; font-size: 11px; font-weight: 800; margin-bottom: -5px; letter-spacing: 1px;">SINAV SALONU / EXAM HALL</small>
+                            <div style="font-size: 2.3rem; font-weight: 900; color: #c53030; line-height: 1; margin-top: 5px;">${student.Derslik || '-'}</div>
                         </div>
                     </div>
-                    <div style="border-top: 1px solid var(--border-color); padding: 15px 20px; color: var(--text-primary); font-size: 13px; line-height: 1.6;">
-                        <div style="padding: 12px; background: var(--box-bg-orange); border-radius: 8px; border-left: 4px solid var(--box-border-orange);">
-                            <p style="margin: 0; font-weight: 600; color: var(--text-orange);">HATIRLATMA / REMINDER:</p>
+
+                    <div style="border-top: 1px solid #edf2f7; padding: 15px 20px; color: #4a5568; font-size: 13px; line-height: 1.6;">
+                        <div style="padding: 12px; background: #fffaf0; border-radius: 8px; border-left: 4px solid #f6ad55;">
+                            <p style="margin: 0; font-weight: 600; color: #7b341e;">HATIRLATMA / REMINDER:</p>
                             <p style="margin: 4px 0 0 0;">Sınav saatinden en az 15 dakika önce öğrenci kimliğinizle birlikte ilgili salonda hazır bulununuz.</p>
-                            <p style="margin: 4px 0 0 0; color: var(--text-secondary); font-style: italic; font-size: 12px;">Please be present in the relevant hall at least 15 minutes before the exam with your student ID.</p>
+                            <p style="margin: 4px 0 0 0; color: #718096; font-style: italic; font-size: 12px;">Please be present in the relevant hall at least 15 minutes before the exam with your student ID.</p>
                         </div>
                     </div>
                 `;
@@ -1029,20 +898,21 @@ function searchExam() {
                         <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
                             🔍 Kayıt Bulunamadı / Record Not Found
                         </strong>
-                        <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">
+                        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
                             Lütfen numaranızı ve dersinizi kontrol ediniz.
                         </span>
                         <br>
-                        <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic;">
+                        <span style="font-size: 0.85rem; color: #718096; font-style: italic;">
                             Please check your student ID and course.
                         </span>
                     </div>
-                    <div style="margin-top: 15px; background: var(--box-bg-red); border: 1px solid var(--box-border-red); padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
-                        <p style="margin: 0 0 4px 0; color: var(--text-primary); font-weight: 600;">
-                            ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #e53e3e; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
+
+                    <div style="margin-top: 15px; background: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
+                        <p style="margin: 0 0 4px 0; color: #2d3748; font-weight: 600;">
+                            ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
                         </p>
-                        <p style="margin: 0; font-style: italic; color: var(--text-secondary); font-size: 12px; border-top: 1px dashed var(--box-border-red); margin-top: 6px; padding-top: 6px;">
-                            If your information is correct but you still see this warning, please report the issue to <a href="mailto:matblm@yildiz.edu.tr" style="color: #e53e3e; font-style: normal; font-weight: 600; text-decoration: underline;">matblm@yildiz.edu.tr</a>.
+                        <p style="margin: 0; font-style: italic; color: #718096; font-size: 12px; border-top: 1px dashed #feb2b2; margin-top: 6px; padding-top: 6px;">
+                            If your information is correct but you still see this warning, please report the issue to <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-style: normal; font-weight: 600; text-decoration: underline;">matblm@yildiz.edu.tr</a>.
                         </p>
                     </div>
                 `;
@@ -1056,15 +926,15 @@ function searchExam() {
                     <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">
                         ⏳ Derslikler Henüz Yüklenmedi / Not Uploaded Yet
                     </strong>
-                    <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600;">
+                    <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">
                         Seçtiğiniz sınav için henüz derslikler sisteme yüklenmedi.
                     </span>
                     <br>
-                    <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 600; display: block; margin-top: 2px;">
+                    <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; margin-top: 2px;">
                         Lütfen daha sonra tekrar kontrol ediniz.
                     </span>
-                    <hr style="border: 0; border-top: 1px dashed var(--box-border-red); margin: 12px 0;">
-                    <span style="font-size: 0.85rem; color: var(--text-secondary); font-style: italic; display: block; line-height: 1.4;">
+                    <hr style="border: 0; border-top: 1px dashed #feb2b2; margin: 12px 0;">
+                    <span style="font-size: 0.85rem; color: #718096; font-style: italic; display: block; line-height: 1.4;">
                         Exam halls have not been uploaded for the selected exam yet.<br>Please check back later.
                     </span>
                 </div>
@@ -1073,26 +943,9 @@ function searchExam() {
     });
 }
 
-function toggleDarkMode() {
-    const isDark = document.body.classList.toggle('dark-mode');
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-
-    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-    if (metaThemeColor) {
-        metaThemeColor.setAttribute('content', isDark ? '#0f172a' : '#1a73e8');
-    }
-    
-    if (toggleBtn) {
-        if (isDark) {
-            toggleBtn.innerHTML = "☀️";
-            localStorage.setItem('theme', 'dark');
-        } else {
-            toggleBtn.innerHTML = "🌙";
-            localStorage.setItem('theme', 'light');
-        }
-    }
-}
 </script>
+
+
 
 
 <script data-goatcounter="https://matyer.goatcounter.com/count"

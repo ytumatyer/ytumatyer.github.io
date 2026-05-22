@@ -326,6 +326,47 @@
 }
 
 
+
+/* --- RENK DEĞİŞKENLERİ --- */
+:root {
+    /* Şu anki mevcut renkleriniz (Aydınlık Mod) */
+    --bg-sayfa: #ffffff;          /* Sorgu kısmında arka renk beyaz */
+    --bg-ust-bar: #1a73e8;        /* Üst bar rengi mavi */
+    --yazi-ust-bar: #ffffff;      /* Üst bar metin rengi beyaz */
+    --bg-kartlar: #f8fafc;        /* Sonuç kutularının iç arka planı */
+    --yazi-ana: #2d3748;          /* Temel metin rengi koyu füme */
+    --border-renk: #edf2f7;       /* Çizgi ve kenarlık renkleri */
+}
+
+/* Karanlık Mod Sınıfı Aktif Olduğunda Devreye Girecek Renkler */
+body.dark-mode {
+    --bg-sayfa: #0f172a;          /* Gözü yormayan derin gece mavisi/siyah */
+    --bg-ust-bar: #1e293b;        /* Karanlık moda uygun mat üst bar */
+    --yazi-ust-bar: #f1f5f9;      /* Üst bar metin rengi soft beyaz */
+    --bg-kartlar: #1e293b;        /* Sonuç kutuları bir ton açık antrasit */
+    --yazi-ana: #e2e8f0;          /* Metinler okunabilir açık gri/beyaz */
+    --border-renk: #334155;       /* Koyu moda uygun çizgiler */
+}
+
+/* --- MEVCUT ELEMENTLERİNİZİ DEĞİŞKENLERE BAĞLAMA --- */
+body {
+    background-color: var(--bg-sayfa);
+    color: var(--yazi-ana);
+    transition: background-color 0.3s ease, color 0.3s ease; /* Yumuşak geçiş efekti */
+}
+
+.header-bar, .ust-bar { /* Sitenizdeki üst barın sınıf adı neyse */
+    background-color: var(--bg-ust-bar);
+    color: var(--yazi-ust-bar);
+}
+
+/* Sınav sorgulama form kutusu ve sonuç kutuları */
+.sorgu-container, .kart, #result.basarili, #result.hata {
+    background-color: var(--bg-kartlar) !important;
+    border-color: var(--border-renk) !important;
+    color: var(--yazi-ana) !important;
+}
+
 </style>
 </head>
 <body>
@@ -411,6 +452,12 @@
         <img src="logo.png" alt="MATyer Logo" class="logo-png">
     </div>
     
+<!-- Üst barınızın içine, sağ köşeye gelecek şekilde konumlandırabilirsiniz -->
+<button id="dark-mode-toggle" onclick="toggleDarkMode()" style="background: transparent; border: none; color: inherit; cursor: pointer; font-size: 1.2rem; padding: 5px 10px; line-height: 1;">
+    🌙
+</button>
+
+
     <!-- Sınav Türü Seçim Alanı -->
     <label for="examTypeSelect">
         SORGULANACAK SINAV
@@ -942,6 +989,38 @@ function searchExam() {
         }
     });
 }
+
+
+function toggleDarkMode() {
+    const isDark = document.body.classList.toggle('dark-mode');
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+
+// Telefonların (Android/iOS) tepesindeki sistem bar rengini dinamik değiştirir
+const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+if (metaThemeColor) {
+    metaThemeColor.setAttribute('content', isDark ? '#0f172a' : '#1a73e8');
+}
+    
+    // Buton ikonunu dinamik değiştirme
+    if (isDark) {
+        toggleBtn.innerHTML = "☀️";
+        localStorage.setItem('theme', 'dark');
+    } else {
+        toggleBtn.innerHTML = "🌙";
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+// Sayfa yüklendiğinde öğrencinin eski tercihini veya telefonunun sistem modunu kontrol etme
+document.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem('theme');
+    const toggleBtn = document.getElementById('dark-mode-toggle');
+    
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if(toggleBtn) toggleBtn.innerHTML = "☀️";
+    }
+});
 
 </script>
 

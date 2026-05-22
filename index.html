@@ -947,25 +947,23 @@ function searchExam() {
     });
 }
 
-</script>
-
-
-
-
-
 <div id="counter">Yükleniyor...</div>
 
 <script>
 async function hitCounter() {
-  const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
-  const data = await res.json();
+  try {
+    const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
+    const data = await res.json();
 
-  document.getElementById("counter").innerText =
-    "Bugünkü tekil ziyaretçi: " + data.count;
+    document.getElementById("counter").innerText =
+      "Bugünkü tekil ziyaretçi: " + data.count;
+
+  } catch (e) {
+    document.getElementById("counter").innerText =
+      "Sayaç yüklenemedi";
+    console.error(e);
+  }
 }
 
 hitCounter();
 </script>
-
-</body>
-</html>

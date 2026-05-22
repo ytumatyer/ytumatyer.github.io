@@ -950,23 +950,6 @@ function searchExam() {
 
 
 
-<div id="counter">Yükleniyor...</div>
-
-  <script>
-  window.addEventListener("load", async () => {
-    const counterEl = document.getElementById("counter");
-
-    try {
-      const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
-      const data = await res.json();
-
-      counterEl.innerText = "Bugünkü tekil ziyaretçi: " + data.count;
-
-    } catch (err) {
-      console.error(err);
-      counterEl.innerText = "Sayaç yüklenemedi";
-    }
-  });
   </script>
 
 </body>

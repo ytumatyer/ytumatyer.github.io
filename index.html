@@ -947,24 +947,9 @@ function searchExam() {
     });
 }
 
-<div id="counter">Yükleniyor...</div>
+
 
 </script>
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
-    const data = await res.json();
-
-    document.getElementById("counter").innerText =
-      "Bugünkü tekil ziyaretçi: " + data.count;
-
-  } catch (err) {
-    document.getElementById("counter").innerText =
-      "Sayaç yüklenemedi";
-    console.error("Counter error:", err);
-  }
-});
-
 
 </body>
 </html>

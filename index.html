@@ -950,7 +950,7 @@ function searchExam() {
 <div id="counter">Yükleniyor...</div>
 
 <script>
-async function hitCounter() {
+document.addEventListener("DOMContentLoaded", async () => {
   try {
     const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
     const data = await res.json();
@@ -958,12 +958,10 @@ async function hitCounter() {
     document.getElementById("counter").innerText =
       "Bugünkü tekil ziyaretçi: " + data.count;
 
-  } catch (e) {
+  } catch (err) {
     document.getElementById("counter").innerText =
       "Sayaç yüklenemedi";
-    console.error(e);
+    console.error("Counter error:", err);
   }
-}
-
-hitCounter();
+});
 </script>

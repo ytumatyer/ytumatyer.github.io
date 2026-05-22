@@ -587,85 +587,104 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentIdGroup = document.getElementById("studentIdGroup");
     const examLanguageGroup = document.getElementById("examLanguageGroup");
 
-const savedTheme = localStorage.getItem('theme');
+    // Tema Kontrolü ve Açık Kalan Parantez Düzeltildi
+    const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
-        // Üst barı da siyah yap
-        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0f172a');
+        const metaColor = document.querySelector('meta[name="theme-color"]');
+        if (metaColor) metaColor.setAttribute('content', '#0f172a');
+    } // <-- BURADAKİ KAPATMA PARANTEZİ EKSİKTİ
 
     
     // Sınav türü değişim kontrolü
-    examSelect.addEventListener("change", () => {
-        const val = examSelect.value;
-        
-        // Numara alanını gizle/göster
-        if(val === "mazeret" || val === "butunleme" || val === "mezuniyet") {
-            studentIdGroup.classList.add("gizli");
-        } else {
-            studentIdGroup.classList.remove("gizli");
-        }
+    if (examSelect) {
+        examSelect.addEventListener("change", () => {
+            const val = examSelect.value;
+            
+            // Numara alanını gizle/göster
+            if(val === "mazeret" || val === "butunleme" || val === "mezuniyet") {
+                if(studentIdGroup) studentIdGroup.classList.add("gizli");
+            } else {
+                if(studentIdGroup) studentIdGroup.classList.remove("gizli");
+            }
 
-        // Bütünleme seçildiyse görünür yap, yoksa gizle (Sadece sınıf yönetimi)
-        if(val === "butunleme") {
-            examLanguageGroup.classList.remove("gizli");
-        } else {
-            examLanguageGroup.classList.add("gizli");
-            document.getElementById("examLanguageSelect").value = ""; // Seçimi sıfırla
-        }
-    });
+            // Bütünleme seçildiyse görünür yap, yoksa gizle (Sadece sınıf yönetimi)
+            if(val === "butunleme") {
+                if(examLanguageGroup) examLanguageGroup.classList.remove("gizli");
+            } else {
+                if(examLanguageGroup) examLanguageGroup.classList.add("gizli");
+                const langSelect = document.getElementById("examLanguageSelect");
+                if(langSelect) langSelect.value = ""; // Seçimi sıfırla
+            }
+        });
+    }
 
+    // Scroll Kontrol Fonksiyonu (Daha kararlı hale getirildi)
     function checkScroll() {
-        const scrollIhtiyaciVarMi = scrollBox.scrollHeight > scrollBox.clientHeight;
-        const metinBittiMi = scrollBox.scrollHeight - scrollBox.scrollTop <= scrollBox.clientHeight + 10;
+        if (!scrollBox) return;
+        
+        // Tarayıcılar arası piksel hassasiyeti yuvarlaması
+        const clientHeight = scrollBox.clientHeight;
+        const scrollHeight = scrollBox.scrollHeight;
+        const scrollTop = Math.ceil(scrollBox.scrollTop);
+        
+        const scrollIhtiyaciVarMi = scrollHeight > clientHeight;
+        const metinBittiMi = (scrollHeight - scrollTop) <= (clientHeight + 15);
         
         if (!scrollIhtiyaciVarMi || metinBittiMi) {
-            checkboxContainer.classList.add("active");
-            confirmCheckbox.disabled = false;
+            if(checkboxContainer) checkboxContainer.classList.add("active");
+            if(confirmCheckbox) confirmCheckbox.disabled = false;
         }
     }
 
-    setTimeout(checkScroll, 100);
-    scrollBox.addEventListener("scroll", checkScroll);
+    if (scrollBox) {
+        setTimeout(checkScroll, 150);
+        scrollBox.addEventListener("scroll", checkScroll);
+        // Pencere boyutu değişirse tekrar tetikle
+        window.addEventListener("resize", checkScroll); 
+    }
 
-    confirmCheckbox.addEventListener("change", () => {
-        approveBtn.disabled = !confirmCheckbox.checked;
-    });
+    if (confirmCheckbox && approveBtn) {
+        confirmCheckbox.addEventListener("change", () => {
+            approveBtn.disabled = !confirmCheckbox.checked;
+        });
+    }
 
-    approveBtn.addEventListener("click", () => {
-        overlay.style.transition = "opacity 0.3s ease";
-        overlay.style.opacity = "0";
-        
-        setTimeout(() => {
-            overlay.style.display = "none";
-            container.style.display = "block"; 
-        }, 300);
-    });
+    if (approveBtn && overlay && container) {
+        approveBtn.addEventListener("click", () => {
+            overlay.style.transition = "opacity 0.3s ease";
+            overlay.style.opacity = "0";
+            
+            setTimeout(() => {
+                overlay.style.display = "none";
+                container.style.display = "block"; 
+            }, 300);
+        });
+    }
 });
 
 function searchExam() {
-
-// Eski kutuyu ve renkleri tamamen gizle ve temizle
-sonucDiv.className = "";
-sonucDiv.style.display = "none";
-sonucDiv.innerHTML = "";
-
-    const examSelect = document.getElementById('examTypeSelect');
-    const courseSelect = document.getElementById('courseSelect');
-    const languageSelect = document.getElementById('examLanguageSelect');
-    
-    const examType = examSelect.value;
-    const dersKodu = courseSelect.value;
-    const examLanguage = languageSelect.value;
-    const noInput = document.getElementById('studentId');
-    const no = noInput.value.trim();
     const sonucDiv = document.getElementById('result');
+    if (!sonucDiv) return;
 
     // Her yeni aramada eski kutu durumunu ve sınıflarını sıfırlıyoruz
     sonucDiv.className = "";
     sonucDiv.style.display = "none";
     sonucDiv.innerHTML = "";
 
-    // --- ALERT YERİNE HTML KUTUSU DÖNÜŞÜMLERİ ---
+    const examSelect = document.getElementById('examTypeSelect');
+    const courseSelect = document.getElementById('courseSelect');
+    const languageSelect = document.getElementById('examLanguageSelect');
+    const noInput = document.getElementById('studentId');
+    
+    if(!examSelect || !courseSelect || !languageSelect || !noInput) return;
+
+    const examType = examSelect.value;
+    const dersKodu = courseSelect.value;
+    const examLanguage = languageSelect.value;
+    const no = noInput.value.trim();
+
+    // --- BARKOD / SEÇİM KONTROLLERİ ---
 
     if (!examType) { 
         sonucDiv.className = "hata";
@@ -727,7 +746,6 @@ sonucDiv.innerHTML = "";
         return; 
     }
     
-    // Genel liste modu kontrolü
     const isGeneralMode = (examType === "mazeret" || examType === "butunleme" || examType === "mezuniyet");
     
     if (!isGeneralMode && !no) { 
@@ -754,7 +772,6 @@ sonucDiv.innerHTML = "";
     const trSinavAdi = secilenMetin.split('/')[0].trim();
     const enSinavAdi = secilenMetin.split('/')[1] ? secilenMetin.split('/')[1].trim() : '';
 
-    // Dosya adını bütünleme durumuna göre dinamik yapılandırıyoruz
     let dosyaAdi = examType;
     if (examType === "butunleme") {
         dosyaAdi = `${examType}_${examLanguage}`;
@@ -784,11 +801,10 @@ sonucDiv.innerHTML = "";
 
             sonucDiv.style.display = "block";
             
-            // --- MOD 1: GENEL LİSTE MODU (Mazeret, Bütünleme, Mezuniyet) ---
+            // --- MOD 1: GENEL LİSTE MODU ---
             if (isGeneralMode) {
                 sonucDiv.className = "basarili";
 
-                // --- DERS ADINI OTOMATİK İKİ DİLLİ YAPMA SÖZLÜĞÜ ---
                 let trDersAdi = birlesikDersAdi; 
                 let enDersAdi = "";             
 
@@ -811,7 +827,6 @@ sonucDiv.innerHTML = "";
                     enDersAdi = "MAT1821 Mathematics";
                 }
 
-                // CSV'deki tüm benzersiz Fakülte ve Derslik ikililerini buluyoruz
                 const benzersizSalonlar = [];
                 const kontrolSeti = new Set();
 
@@ -837,34 +852,24 @@ sonucDiv.innerHTML = "";
                     `;
                 });
 
-                // --- SINAV TÜRÜNE GÖRE DİNAMİK METİN AYARLAMA ---
                 let uyariMetniTR = "";
                 let uyariMetniEN = "";
                 let formLinki = "";
 
                 switch(examType) {
                     case "mazeret":
-                        uyariMetniTR = `1. Mazeret sınavına sadece mazereti ilgili bölüm başkanlığınca kabul edilen öğrenciler girebilir.<br>
-                                        2. Soru kitapçığı israfını önlemek ve gerekli planlamaları yapabilmek adına, sınava girecekseniz lütfen formu doldurunuz.`;
-
-                        uyariMetniEN = `1. Only students whose excuses are officially accepted by the relevant department administration may take the make-up exam.<br>
-                                        2. To prevent the waste of question booklets and assist with the necessary planning, please fill out the form if you will take the exam.`;
+                        uyariMetniTR = `1. Mazeret sınavına sadece mazereti ilgili bölüm başkanlığınca kabul edilen öğrenciler girebilir.<br>2. Soru kitapçığı israfını önlemek ve gerekli planlamaları yapabilmek adına, sınava girecekseniz lütfen formu doldurunuz.`;
+                        uyariMetniEN = `1. Only students whose excuses are officially accepted by the relevant department administration may take the make-up exam.<br>2. To prevent the waste of question booklets and assist with the necessary planning, please fill out the form if you will take the exam.`;
                         formLinki = "https://forms.cloud.microsoft/r/QD3gzBKQWZ";
                         break;
-                        
                     case "butunleme":
-                        uyariMetniTR = `1. Final harf notu <span style="background:#feebc8; padding:2px 4px; border-radius:4px; font-weight:700;">CC veya üzeri</span> olan öğrenciler bütünleme sınavına <span style="background:#feebc8; padding:2px 4px; border-radius:4px; font-weight:700;">giremezler</span>.<br>
-                                        2. Kitapçık israfını önlemek adına, sınava kesin katılacaksanız lütfen formu doldurunuz.`;
-                        uyariMetniEN = `1. Students with a final grade of CC or above are not allowed to take the resit exam.<br>
-                                        2. To avoid booklet waste, please fill out the form only if you will definitely take the exam.`;
+                        uyariMetniTR = `1. Final harf notu <span style="background:#feebc8; padding:2px 4px; border-radius:4px; font-weight:700;">CC veya üzeri</span> olan öğrenciler bütünleme sınavına <span style="background:#feebc8; padding:2px 4px; border-radius:4px; font-weight:700;">giremezler</span>.<br>2. Kitapçık israfını önlemek adına, sınava kesin katılacaksaniz lütfen formu doldurunuz.`;
+                        uyariMetniEN = `1. Students with a final grade of CC or above are not allowed to take the resit exam.<br>2. To avoid booklet waste, please fill out the form only if you will definitely take the exam.`;
                         formLinki = "https://forms.cloud.microsoft/r/QD3gzBKQWZ";
                         break;
-                        
                     case "mezuniyet":
-                        uyariMetniTR = `1. Mezuniyet sınavına sadece mezun olabilecek durumda olan öğrenciler katılabilir.<br>
-                                        2. Katılım durumunuzu bildirmek ve soru kitapçığı planlamasına yardımcı olmak için lütfen formu doldurunuz.`;
-                        uyariMetniEN = `1. Only students eligible for graduation are allowed to take the graduation exam.<br>
-                                        2. Please fill out the form to confirm your attendance and assist with question booklet planning.`;
+                        uyariMetniTR = `1. Mezuniyet sınavına sadece mezun olabilecek durumda olan öğrenciler katılabilir.<br>2. Katılım durumunuzu bildirmek ve soru kitapçığı planlamasına yardımcı olmak için lütfen formu doldurunuz.`;
+                        uyariMetniEN = `1. Only students eligible for graduation are allowed to take the graduation exam.<br>2. Please fill out the form to confirm your attendance and assist with question booklet planning.`;
                         formLinki = "https://forms.cloud.microsoft/r/QD3gzBKQWZ";
                         break;
                 }
@@ -881,7 +886,6 @@ sonucDiv.innerHTML = "";
                             <span style="font-weight: 700; color: #2d3748; font-size: 14px;">${sinavSaati}</span>
                         </div>
                     </div>
-
                     <div style="margin: 0 20px 20px 20px; text-align: center;">
                         <div style="background: #ebf8ff; padding: 15px; border-radius: 12px; border: 2px solid #bee3f8; margin-bottom: 15px;">
                             <small style="color: #2b6cb0; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>
@@ -890,31 +894,23 @@ sonucDiv.innerHTML = "";
                                 ${enDersAdi ? `<br><span style="font-size: 0.95rem; color: #718096; font-weight: 600; font-style: italic;">${enDersAdi}</span>` : ''}
                             </div>
                         </div>
-
                         <div style="background: #f7fafc; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; margin-bottom: 15px;">
                             <small style="color: #4a5568; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">SINAV / EXAM</small>
                             <div style="font-size: 1.1rem; font-weight: 700; color: #4a5568; line-height: 1.3;">
                                 ${trSinavAdi.toLowerCase().includes('arasınav') || trSinavAdi.toLowerCase().includes('sınav') ? trSinavAdi : `${trSinavAdi} Sınavı`}
-                                ${enSinavAdi ? `
-                                    <br><span style="font-size: 0.95rem; color: #a0aec0; font-weight: 600; font-style: italic;">
-                                        ${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}
-                                    </span>
-                                ` : ''}
+                                ${enSinavAdi ? `<br><span style="font-size: 0.95rem; color: #a0aec0; font-weight: 600; font-style: italic;">${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}</span>` : ''}
                             </div>
                         </div>
-
                         <div style="background: #fff5f5; padding: 15px 20px 20px 20px; border-radius: 12px; border: 2px solid #feb2b2; margin-bottom: 20px;">
                             <small style="color: #e53e3e; display: block; font-size: 11px; font-weight: 800; margin-bottom: 10px; letter-spacing: 1px;">SINAV SALONLARI / EXAM HALLS</small>
                             ${salonlarHTML}
                         </div>
                     </div>
-
-                    <div style="text-align: center; margin: -5px 0 25px 0; color: #dd6b20; font-weight: 700; font-size: 13px; animation: pulseAnimation 2s infinite;">
+                    <div style="text-align: center; margin: -5px 0 25px 0; color: #dd6b20; font-weight: 700; font-size: 13px;">
                         👇 Lütfen sayfanın altındaki Katılım Formu'nu doldurunuz! 👇 <br>
                         <span style="font-size: 11px; font-style: italic; color: #b7791f; font-weight: 600;">Please fill out the Attendance Form located at the bottom!</span>
                     </div>
-
-                    <div style="margin: 0 20px 20px 20px; background: #fffaf0; border: 2px solid #feebc8; padding: 15px; border-radius: 12px; text-align: left; box-shadow: 0 4px 6px rgba(0,0,0,0.02);">
+                    <div style="margin: 0 20px 20px 20px; background: #fffaf0; border: 2px solid #feebc8; padding: 15px; border-radius: 12px; text-align: left;">
                         <div style="color: #dd6b20; font-weight: 800; font-size: 12px; letter-spacing: 0.5px; margin-bottom: 10px; text-transform: uppercase;">
                             ⚠️ ÖNEMLİ BİLGİLENDİRME & KATILIM FORMU
                         </div>
@@ -924,11 +920,10 @@ sonucDiv.innerHTML = "";
                         <div style="font-size: 12px; color: #718096; line-height: 1.4; font-style: italic; border-top: 1px dashed #fbd38d; padding-top: 10px; margin-bottom: 15px;">
                             ${uyariMetniEN}
                         </div>
-                        <a href="${formLinki}" target="_blank" class="katilim-butonu" style="display: block; text-align: center; background: #dd6b20; color: white; text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(221, 107, 32, 0.4); animation: pulseAnimation 2s infinite; transition: all 0.2s;">
+                        <a href="${formLinki}" target="_blank" class="katilim-butonu" style="display: block; text-align: center; background: #dd6b20; color: white; text-decoration: none; padding: 14px; border-radius: 8px; font-weight: 800; font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">
                             📝 FORMU DOLDUR / FILL OUT THE FORM
                         </a>
                     </div>
-
                     <div style="border-top: 1px solid #edf2f7; padding: 15px 20px; color: #4a5568; font-size: 13px; line-height: 1.6;">
                         <div style="padding: 12px; background: #fffaf0; border-radius: 8px; border-left: 4px solid #f6ad55;">
                             <p style="margin: 0; font-weight: 600; color: #7b341e;">NOT / NOTE:</p>
@@ -937,10 +932,10 @@ sonucDiv.innerHTML = "";
                         </div>
                     </div>
                 `;
-                return; // KRİTİK: Genel mod bittiyse fonksiyon burada durmalı!
+                return;
             }
 
-            // --- MOD 2: BİREYSEL SORGULAMA MODU (Arasınavlar ve Final) ---
+            // --- MOD 2: BİREYSEL SORGULAMA MODU ---
             const student = temizListe.find(o => String(o.No).trim() === no);
             
             if (student) {
@@ -953,7 +948,6 @@ sonucDiv.innerHTML = "";
                         <span style="font-size: 1.1rem; color: #2c3e50;">Sayın / Dear</span><br>
                         <strong style="font-size: 1.4rem; color: #1a73e8; text-transform: uppercase;">${tamAd}</strong>
                     </div>
-
                     <div style="display: flex; justify-content: space-around; margin: 0 20px 20px 20px; padding: 10px; background: #f8fafc; border-radius: 8px;">
                         <div>
                             <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold;">TARİH / DATE</small>
@@ -965,34 +959,25 @@ sonucDiv.innerHTML = "";
                             <span style="font-weight: 600; color: #2d3748;">${sinavSaati}</span>
                         </div>
                     </div>
-
                     <div style="margin: 0 20px 20px 20px; text-align: center;">
                         <div style="background: #ebf8ff; padding: 15px; border-radius: 12px; border: 2px solid #bee3f8; margin-bottom: 15px;">
                             <small style="color: #2b6cb0; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>
                             <div style="font-size: 1.1rem; font-weight: 700; color: #2c5282; line-height: 1.3;">${dersGorselAdi}</div>
                         </div>
-
                         <div style="background: #f7fafc; padding: 12px; border-radius: 12px; border: 2px solid #e2e8f0; margin-bottom: 15px;">
                             <small style="color: #4a5568; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">SINAV / EXAM</small>
                             <div style="font-size: 1.1rem; font-weight: 700; color: #4a5568; line-height: 1.3;">
                                 ${trSinavAdi.toLowerCase().includes('arasınav') || trSinavAdi.toLowerCase().includes('sınav') ? trSinavAdi : `${trSinavAdi} Sınavı`}
-                                ${enSinavAdi ? `
-                                    <br><span style="font-size: 0.95rem; color: #a0aec0; font-weight: 600; font-style: italic;">
-                                        ${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}
-                                    </span>
-                                ` : ''}
+                                ${enSinavAdi ? `<br><span style="font-size: 0.95rem; color: #a0aec0; font-weight: 600; font-style: italic;">${enSinavAdi.toLowerCase().includes('midterm') ? enSinavAdi : `${enSinavAdi} Exam`}</span>` : ''}
                             </div>
                         </div>
-
                         <div style="background: #fff5f5; padding: 20px; border-radius: 12px; border: 2px solid #feb2b2;">
                             <small style="color: #e53e3e; display: block; font-size: 11px; font-weight: 800; margin-bottom: 0px; letter-spacing: 1px;">FAKÜLTE / FACULTY</small>                            
                             <div style="font-size: 1rem; color: #4a5568; font-weight: 600; margin-bottom: 12px; line-height: 1.2;">${student.Fakulte || '-'}</div> 
-                            
                             <small style="color: #e53e3e; display: block; font-size: 11px; font-weight: 800; margin-bottom: -5px; letter-spacing: 1px;">SINAV SALONU / EXAM HALL</small>
                             <div style="font-size: 2.3rem; font-weight: 900; color: #c53030; line-height: 1; margin-top: 5px;">${student.Derslik || '-'}</div>
                         </div>
                     </div>
-
                     <div style="border-top: 1px solid #edf2f7; padding: 15px 20px; color: #4a5568; font-size: 13px; line-height: 1.6;">
                         <div style="padding: 12px; background: #fffaf0; border-radius: 8px; border-left: 4px solid #f6ad55;">
                             <p style="margin: 0; font-weight: 600; color: #7b341e;">HATIRLATMA / REMINDER:</p>
@@ -1016,7 +1001,6 @@ sonucDiv.innerHTML = "";
                             Please check your student ID and course.
                         </span>
                     </div>
-
                     <div style="margin-top: 15px; background: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
                         <p style="margin: 0 0 4px 0; color: #2d3748; font-weight: 600;">
                             ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
@@ -1053,40 +1037,26 @@ sonucDiv.innerHTML = "";
     });
 }
 
-
 function toggleDarkMode() {
     const isDark = document.body.classList.toggle('dark-mode');
     const toggleBtn = document.getElementById('dark-mode-toggle');
 
-// Telefonların (Android/iOS) tepesindeki sistem bar rengini dinamik değiştirir
-const metaThemeColor = document.querySelector('meta[name="theme-color"]');
-if (metaThemeColor) {
-    metaThemeColor.setAttribute('content', isDark ? '#0f172a' : '#1a73e8');
-}
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', isDark ? '#0f172a' : '#1a73e8');
+    }
     
-    // Buton ikonunu dinamik değiştirme
-    if (isDark) {
-        toggleBtn.innerHTML = "☀️";
-        localStorage.setItem('theme', 'dark');
-    } else {
-        toggleBtn.innerHTML = "🌙";
-        localStorage.setItem('theme', 'light');
+    if (toggleBtn) {
+        if (isDark) {
+            toggleBtn.innerHTML = "☀️";
+            localStorage.setItem('theme', 'dark');
+        } else {
+            toggleBtn.innerHTML = "🌙";
+            localStorage.setItem('theme', 'light');
+        }
     }
 }
-
-// Sayfa yüklendiğinde öğrencinin eski tercihini veya telefonunun sistem modunu kontrol etme
-document.addEventListener("DOMContentLoaded", () => {
-    const savedTheme = localStorage.getItem('theme');
-    const toggleBtn = document.getElementById('dark-mode-toggle');
-    
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-mode');
-        if(toggleBtn) toggleBtn.innerHTML = "☀️";
-    }
-});
-
 </script>
-
 
 
 

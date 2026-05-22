@@ -367,6 +367,57 @@ body {
     color: var(--yazi-ana) !important;
 }
 
+/* --- KARANLIK MODDA BEYAZ KALAN ALANLARIN DÜZELTİLMESİ --- */
+
+body.dark-mode .container, 
+body.dark-mode .popup-box {
+    background: #1e293b; /* Koyu antrasit arka plan */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .popup-content {
+    background: #0f172a; /* Popup içindeki metin kutusunu daha da koyu yapar */
+    border-color: #334155;
+    color: #cbd5e1;
+}
+
+body.dark-mode .popup-box h2 {
+    color: #38bdf8; /* Başlığı soft bir mavi yapar */
+}
+
+body.dark-mode .checkbox-container {
+    color: #e2e8f0;
+}
+
+/* Seçim alanları ve girdi kutularının karanlık moda uyarlanması */
+body.dark-mode select, 
+body.dark-mode input {
+    background-color: #1e293b;
+    color: #ffffff;
+    border-color: #334155;
+}
+
+body.dark-mode select:focus, 
+body.dark-mode input:focus {
+    background-color: #0f172a;
+    border-color: #3182ce;
+}
+
+body.dark-mode label {
+    color: #e2e8f0; /* "Öğrenci Numarası" gibi başlıkları beyazlatır */
+}
+
+body.dark-mode .en-label {
+    color: #64748b; /* İngilizce alt yazıları matlaştırır */
+}
+
+/* Sonuç ekranındaki hata kutusunun karanlık mod ayarı */
+body.dark-mode #result.hata {
+    background: #451a03 !important; /* Koyu kırmızı/kahve tonu */
+    border-color: #7c2d12 !important;
+    color: #fca5a5 !important;
+}
+
 </style>
 </head>
 <body>
@@ -536,6 +587,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const studentIdGroup = document.getElementById("studentIdGroup");
     const examLanguageGroup = document.getElementById("examLanguageGroup");
 
+const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        // Üst barı da siyah yap
+        document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0f172a');
+
     
     // Sınav türü değişim kontrolü
     examSelect.addEventListener("change", () => {
@@ -586,6 +643,12 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function searchExam() {
+
+// Eski kutuyu ve renkleri tamamen gizle ve temizle
+sonucDiv.className = "";
+sonucDiv.style.display = "none";
+sonucDiv.innerHTML = "";
+
     const examSelect = document.getElementById('examTypeSelect');
     const courseSelect = document.getElementById('courseSelect');
     const languageSelect = document.getElementById('examLanguageSelect');

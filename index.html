@@ -765,19 +765,26 @@ function searchExam() {
                 }
 
                 sonucDiv.innerHTML = `
-                    <div style="display: flex; justify-content: space-around; margin: 20px 20px 15px 20px; padding: 12px; background: #f8fafc; border-radius: 12px; border: 1px solid #edf2f7;">
-                        <div>
-                            <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">TARİH / DATE</small>
-                            <span style="font-weight: 700; color: #2d3748; font-size: 14px;">${sinavTarihi}</span>
-                        </div>
+                    
+<!-- Dış kapsayıcıya flexbox vererek tüm blogu ortalıyoruz -->
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 15px 0;">
+    
+    <!-- Sol Blok: Tarih -->
+    <div style="flex: 1; text-align: center; padding: 0 10px;">
+        <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">TARİH / DATE</small>
+        <span style="font-weight: 700; color: #2d3748; font-size: 14px; display: block; margin-top: 2px;">${sinavTarihi}</span>
+    </div>
+    
+    <!-- Ortadaki Dikey Çizgi (Yüksekliği sabitlendi) -->
+    <div style="border-left: 1px solid #e2e8f0; height: 35px; align-self: center;"></div>
+    
+    <!-- Sağ Blok: Saat -->
+    <div style="flex: 1; text-align: center; padding: 0 10px;">
+        <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">SAAT / TIME</small>
+        <span style="font-weight: 700; color: #2d3748; font-size: 14px; display: block; margin-top: 2px;">${sinavSaati}</span>
+    </div>
 
-                        <div style="border-left: 1px solid #e2e8f0;"></div>
-
-                        <div>
-                            <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">SAAT / TIME</small>
-                            <span style="font-weight: 700; color: #2d3748; font-size: 14px;">${sinavSaati}</span>
-                        </div>
-                    </div>
+</div>
 
                     <div style="margin: 0 20px 20px 20px; text-align: center;">
                         <div style="background: #ebf8ff; padding: 15px; border-radius: 12px; border: 2px solid #bee3f8; margin-bottom: 15px;">

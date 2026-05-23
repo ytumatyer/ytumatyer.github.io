@@ -271,19 +271,12 @@
             box-shadow: 0 6px 15px rgba(26, 54, 93, 0.3);
         }
 
-       #result {
+      #result {
     margin-top: 25px;
     padding: 0; 
     border-radius: 20px;
     display: none;
-    /* text-align: left;  <-- Bu satırı sildik veya yorum satırı yaptık */
-    
-    /* 👇 İçindeki her şeyi, tarih ve saati de dahil olmak üzere dikeyde ortalayacak yeni sihirli satırlarımız 👇 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    
+    text-align: left; /* Tekrar sola yaslı yaptık */
     transition: all 0.3s ease;
     animation: slideUp 0.4s ease-out;
     overflow: hidden;
@@ -773,26 +766,25 @@ function searchExam() {
 
                 sonucDiv.innerHTML = `
                     
-<!-- Dış kapsayıcıya flexbox vererek tüm blogu ortalıyoruz -->
-<div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 15px 0;">
+<!-- Sadece Tarih/Saat alanını saran kısım (Javascript içinde) -->
+<div style="display: flex; justify-content: center; align-items: center; width: 100%; padding: 15px 0;">
     
-    <!-- Sol Blok: Tarih -->
-    <div style="flex: 1; text-align: center; padding: 0 10px;">
+    <!-- Tarih Kısmı -->
+    <div style="flex: 1; text-align: center;">
         <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">TARİH / DATE</small>
-        <span style="font-weight: 700; color: #2d3748; font-size: 14px; display: block; margin-top: 2px;">${sinavTarihi}</span>
+        <span style="font-weight: 700; color: #2d3748; font-size: 14px; display: block; margin-top: 4px;">${sinavTarihi}</span>
     </div>
     
-    <!-- Ortadaki Dikey Çizgi (Yüksekliği sabitlendi) -->
-    <div style="border-left: 1px solid #e2e8f0; height: 35px; align-self: center;"></div>
+    <!-- Dikey Çizgi -->
+    <div style="border-left: 1px solid #e2e8f0; height: 30px;"></div>
     
-    <!-- Sağ Blok: Saat -->
-    <div style="flex: 1; text-align: center; padding: 0 10px;">
+    <!-- Saat Kısmı -->
+    <div style="flex: 1; text-align: center;">
         <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">SAAT / TIME</small>
-        <span style="font-weight: 700; color: #2d3748; font-size: 14px; display: block; margin-top: 2px;">${sinavSaati}</span>
+        <span style="font-weight: 700; color: #2d3748; font-size: 14px; display: block; margin-top: 4px;">${sinavSaati}</span>
     </div>
 
 </div>
-
                     <div style="margin: 0 20px 20px 20px; text-align: center;">
                         <div style="background: #ebf8ff; padding: 15px; border-radius: 12px; border: 2px solid #bee3f8; margin-bottom: 15px;">
                             <small style="color: #2b6cb0; display: block; font-size: 11px; font-weight: 800; margin-bottom: 5px; letter-spacing: 1px;">DERS / COURSE</small>

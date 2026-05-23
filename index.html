@@ -474,9 +474,6 @@
         <br>
         <span style="font-size: 10.5px; color: #718096; font-weight: 500; font-style: italic; margin-top: 5px; display: block; letter-spacing: 0.5px;">
     © 2026 YTÜ Matematik Bölümü <span style="font-style: normal; font-weight: bold; margin: 0 4px;">|</span> <span class="v-text">v1.0
-<br><br>
-<div id="counter">Yükleniyor...</div>
-
 </span>
 </span>
 
@@ -954,22 +951,13 @@ function searchExam() {
 
 
 
- (function () {
-    const counterEl = document.getElementById("counter");
-    if (!counterEl) return;
-
-    window.addEventListener("load", async () => {
-      try {
-        const res = await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
-        const data = await res.json();
-
-        counterEl.innerText = "Bugünkü sorgulama sayısı: " + data.count;
-      } catch (err) {
-        console.error("counter error:", err);
-        counterEl.innerText = "Sayaç yüklenemedi";
-      }
-    });
-  })();
+ window.addEventListener("load", async () => {
+  try {
+    await fetch("https://visitor-counter.<kullanici>.workers.dev/increment");
+  } catch (err) {
+    console.error("counter error:", err);
+  }
+});
 
 
   </script>

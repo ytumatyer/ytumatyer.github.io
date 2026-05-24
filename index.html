@@ -887,14 +887,19 @@ sonucDiv.innerHTML = `
 } 
 
 
-
 window.addEventListener("load", async () => {
     try {
-        await fetch("https://visitor-counter.liselikadir94.workers.dev/increment");
+        // Base64 ile gizlenmiş URL çözülüyor
+        const target = atob("aHR0cHM6Ly92aXNpdG9yLWNvdW50ZXIubGlzZWxpa2FkaXI5NC53b3JrZXJzLmRldi9pbmNyZW1lbnQ=");
+        await fetch(target);
     } catch (err) {
-        console.error("counter error:", err);
+        // Hata mesajındaki counter kelimesini tuttuk ama detayları loglamadık ki URL sızmasın
+        console.error("counter error"); 
     }
 });
+
+
+
 
 
   </script>

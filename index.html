@@ -559,54 +559,74 @@ function searchExam() {
     // --- POP-UP YERİNE ALTA YAZDIRAN YENİ DOĞRULAMA YAPISI ---
     if (!examType) { 
         sonucDiv.className = "hata";
-        sonucDiv.style.display = "block";
-        sonucDiv.innerHTML = `
-            <div style="text-align: center; padding: 10px;">
-                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Selection Required</strong>
-                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen sınav türünü seçiniz.</span><br>
-                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select the exam type.</span>
-            </div>
-        `;
+sonucDiv.style.display = "block";
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü -->
+        <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">⚠️ Eksik Seçim / Selection Required</strong>
+        
+        <!-- Tek Bir Çatı Altında Mobil Uyumlu Açıklama -->
+        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
+            Lütfen sınav türünü seçiniz.<br>
+            <span style="font-weight: 500; color: #718096; font-size: 0.85rem; font-style: italic;">Please select the exam type.</span>
+        </span>
+    </div>
+`;        
         return; 
     }
     
     if (examType === "butunleme" && !examLanguage) { 
         sonucDiv.className = "hata";
-        sonucDiv.style.display = "block";
-        sonucDiv.innerHTML = `
-            <div style="text-align: center; padding: 10px;">
-                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Selection Required</strong>
-                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen kayıtlı olduğunuz grubun dilini seçiniz.</span><br>
-                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select the language of the section you are registered in.</span>
-            </div>
+sonucDiv.style.display = "block";
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü -->
+        <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">⚠️ Eksik Seçim / Selection Required</strong>
+        
+        <!-- Tek Bir Çatı Altında Mobil Uyumlu Açıklama -->
+        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
+            Lütfen kayıtlı olduğunuz grubun dilini seçiniz.<br>
+            <span style="font-weight: 500; color: #718096; font-size: 0.85rem; font-style: italic;">Please select the language of the section you are registered in.</span>
+        </span>
+    </div>
         `;
         return; 
     }
     
     if (!dersKodu) { 
         sonucDiv.className = "hata";
-        sonucDiv.style.display = "block";
-        sonucDiv.innerHTML = `
-            <div style="text-align: center; padding: 10px;">
-                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Selection Required</strong>
-                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen ders seçiniz.</span><br>
-                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select a course.</span>
-            </div>
-        `;
+sonucDiv.style.display = "block";
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü -->
+        <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">⚠️ Eksik Seçim / Selection Required</strong>
+        
+        <!-- Tek Bir Çatı Altında Mobil Uyumlu Açıklama -->
+        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
+            Lütfen ders seçiniz.<br>
+            <span style="font-weight: 500; color: #718096; font-size: 0.85rem; font-style: italic;">Please select a course.</span>
+        </span>
+    </div>
+`;
         return; 
     }
     
     const isGeneralMode = (examType === "mazeret" || examType === "butunleme" || examType === "mezuniyet");
     if (!isGeneralMode && !no) { 
         sonucDiv.className = "hata";
-        sonucDiv.style.display = "block";
-        sonucDiv.innerHTML = `
-            <div style="text-align: center; padding: 10px;">
-                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Bilgi / Missing Information</strong>
-                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen öğrenci numaranızı giriniz.</span><br>
-                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please enter your student ID.</span>
-            </div>
-        `;
+sonucDiv.style.display = "block";
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü -->
+        <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">⚠️ Eksik Bilgi / Missing Information</strong>
+        
+        <!-- Tek Bir Çatı Altında Mobil Uyumlu Açıklama -->
+        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
+            Lütfen öğrenci numaranızı giriniz.<br>
+            <span style="font-weight: 500; color: #718096; font-size: 0.85rem; font-style: italic;">Please enter your student ID.</span>
+        </span>
+    </div>
+`;
         return; 
     }
     // -----------------------------------------------------
@@ -811,34 +831,40 @@ function searchExam() {
                 `;
             } else {
                 sonucDiv.className = "hata";
-                sonucDiv.innerHTML = `
-                    <div style="text-align: center; padding: 10px;">
-                        <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">🔍 Kayıt Bulunamadı / Record Not Found</strong>
-                        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen numaranızı ve dersinizi kontrol ediniz.</span><br>
-                        <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please check your student ID and course.</span>
-                    </div>
-                    <div style="margin-top: 15px; background: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
-                        <p style="margin: 0 0 4px 0; color: #2d3748; font-weight: 600;">
-                            ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
-                        </p>
-                        <p style="margin: 0; font-style: italic; color: #718096; font-size: 12px; border-top: 1px dashed #feb2b2; margin-top: 6px; padding-top: 6px;">
-                            If your information is correct but you still see this warning, please report the issue to <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-style: normal; font-weight: 600; text-decoration: underline;">matblm@yildiz.edu.tr</a>.
-                        </p>
-                    </div>
-                `;
+sonucDiv.style.display = "block"; // Eğer fonksiyon içinde yukarıda verilmediyse güvenli kalması için eklendi
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü (1rem olarak eşitlendi) -->
+        <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">🔍 Kayıt Bulunamadı / Record Not Found</strong>
+        
+        <!-- Tek Bir Çatı Altında Mobil Uyumlu Açıklama -->
+        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
+            Lütfen numaranızı ve dersinizi kontrol ediniz.<br>
+            <span style="font-weight: 500; color: #718096; font-size: 0.85rem; font-style: italic;">Please check your student ID and course.</span>
+        </span>
+    </div>
+    
+    <!-- E-posta Bildirim Kutusu (Yapı korundu, minik satır boşlukları optimize edildi) -->
+    <div style="margin-top: 12px; background: #fff5f5; border: 1px solid #fed7d7; padding: 12px; border-radius: 8px; text-align: center; font-size: 13px; line-height: 1.5;">
+        <p style="margin: 0 0 6px 0; color: #2d3748; font-weight: 600;">
+            ⚠️ BİLGİLERİNİZ DOĞRU OLDUĞU HALDE BU UYARIYI ALIYORSANIZ, durumu lütfen <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-weight: 700; text-decoration: underline;">matblm@yildiz.edu.tr</a> adresine bildiriniz.
+        </p>
+        <p style="margin: 0; font-style: italic; color: #718096; font-size: 12px; border-top: 1px dashed #feb2b2; margin-top: 6px; padding-top: 6px;">
+            If your information is correct but you still see this warning, please report the issue to <a href="mailto:matblm@yildiz.edu.tr" style="color: #9b2c2c; font-style: normal; font-weight: 600; text-decoration: underline;">matblm@yildiz.edu.tr</a>.
+        </p>
+    </div>
+`;
             }
         },
         error: function() {
             sonucDiv.className = "hata";
-            sonucDiv.style.display = "block";
-            sonucDiv.innerHTML = `
-               <div style="text-align: center; padding: 10px;">
-                 <!-- Başlık Bölümü -->
-              <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">
-    📢 Sınav Yerleri İlan Edilmedi / Exam Locations Not Announced Yet
-</strong>
+sonucDiv.style.display = "block";
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü -->
+        <strong style="font-size: 1rem; color: #9b2c2c; display: block; margin-bottom: 8px; font-weight: 700;">📢 Sınav Yerleri İlan Edilmedi / Exam Locations Not Announced Yet</strong>
         
-        <!-- Türkçe Bilgilendirme -->
+        <!-- Türkçe Bilgilendirme Çatısı -->
         <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
             Seçtiğiniz dersin sınav yerleri henüz ilan edilmemiştir.<br>
             <span style="font-weight: 500; color: #718096; font-size: 0.9rem;">Lütfen daha sonra tekrar kontrol ediniz.</span>
@@ -847,16 +873,19 @@ function searchExam() {
         <!-- Ayırıcı Çizgi -->
         <hr style="border: 0; border-top: 1px dashed #feb2b2; margin: 12px 0;">
         
-        <!-- İngilizce Bilgilendirme -->
+        <!-- İngilizce Bilgilendirme Çatısı -->
         <span style="font-size: 0.85rem; color: #4a5568; font-style: italic; display: block; line-height: 1.5; font-weight: 500;">
             Exam locations for the selected course have not been announced yet.<br>
             <span style="color: #718096; font-size: 0.8rem;">Please check back later.</span>
         </span>
     </div>
-`;           
-        }
-    });
+`;
 }
+
+    });
+
+} 
+
 
 
 window.addEventListener("load", async () => {

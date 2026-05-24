@@ -889,11 +889,9 @@ sonucDiv.innerHTML = `
 
 window.addEventListener("load", async () => {
     try {
-        // Base64 ile gizlenmiş URL çözülüyor
         const target = atob("aHR0cHM6Ly92aXNpdG9yLWNvdW50ZXIubGlzZWxpa2FkaXI5NC53b3JrZXJzLmRldi9pbmNyZW1lbnQ=");
         await fetch(target);
     } catch (err) {
-        // Hata mesajındaki counter kelimesini tuttuk ama detayları loglamadık ki URL sızmasın
         console.error("counter error"); 
     }
 });

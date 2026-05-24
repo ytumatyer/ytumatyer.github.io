@@ -556,12 +556,60 @@ function searchExam() {
     sonucDiv.style.display = "none";
     sonucDiv.innerHTML = "";
 
-    if (!examType) { alert("Lütfen sınav türünü seçiniz."); return; }
-    if (examType === "butunleme" && !examLanguage) { alert("Lütfen bütünleme sınav dili grubunu seçiniz."); return; }
-    if (!dersKodu) { alert("Lütfen ders seçiniz."); return; }
+    // --- POP-UP YERİNE ALTA YAZDIRAN YENİ DOĞRULAMA YAPISI ---
+    if (!examType) { 
+        sonucDiv.className = "hata";
+        sonucDiv.style.display = "block";
+        sonucDiv.innerHTML = `
+            <div style="text-align: center; padding: 10px;">
+                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Incomplete Selection</strong>
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen sınav türünü seçiniz.</span><br>
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select the exam type.</span>
+            </div>
+        `;
+        return; 
+    }
+    
+    if (examType === "butunleme" && !examLanguage) { 
+        sonucDiv.className = "hata";
+        sonucDiv.style.display = "block";
+        sonucDiv.innerHTML = `
+            <div style="text-align: center; padding: 10px;">
+                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Incomplete Selection</strong>
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen bütünleme sınav dili grubunu seçiniz.</span><br>
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select the resit exam language group.</span>
+            </div>
+        `;
+        return; 
+    }
+    
+    if (!dersKodu) { 
+        sonucDiv.className = "hata";
+        sonucDiv.style.display = "block";
+        sonucDiv.innerHTML = `
+            <div style="text-align: center; padding: 10px;">
+                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Incomplete Selection</strong>
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen ders seçiniz.</span><br>
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select a course.</span>
+            </div>
+        `;
+        return; 
+    }
     
     const isGeneralMode = (examType === "mazeret" || examType === "butunleme" || examType === "mezuniyet");
-    if (!isGeneralMode && !no) { alert("Lütfen öğrenci numaranızı giriniz."); return; }
+    if (!isGeneralMode && !no) { 
+        sonucDiv.className = "hata";
+        sonucDiv.style.display = "block";
+        sonucDiv.innerHTML = `
+            <div style="text-align: center; padding: 10px;">
+                <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Bilgi / Missing Information</strong>
+                <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen öğrenci numaranızı giriniz.</span><br>
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please enter your student ID.</span>
+            </div>
+        `;
+        return; 
+    }
+    // -----------------------------------------------------
 
     const secilenMetin = examSelect.options[examSelect.selectedIndex].text;
     const trSinavAdi = secilenMetin.split('/')[0].trim();
@@ -589,7 +637,6 @@ function searchExam() {
                 return yeniObj;
             });
 
-            // 2. KURAL: Tarih ve Saat bilgisini her iki mod için de garantili olarak 2. satırdan (temizListe[0]) alıyoruz.
             const genelBilgi = temizListe[0] || {};
             const sinavTarihi = genelBilgi.Tarih || '-';
             const sinavSaati = genelBilgi.Saat || '-';
@@ -658,7 +705,6 @@ function searchExam() {
                 }
 
                 sonucDiv.innerHTML = `
-                    <!-- 3. KURAL: Tarih ve Saat alanı flex ile yatayda, text-align ile dikey eksende tam ortalandı -->
                     <div style="display: flex; justify-content: center; gap: 40px; text-align: center; margin: 20px 20px 15px 20px; padding: 12px; background: #f8fafc; border-radius: 12px; border: 1px solid #edf2f7;">
                         <div>
                             <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold; letter-spacing: 0.5px;">TARİH / DATE</small>
@@ -717,7 +763,6 @@ function searchExam() {
             if (student) {
                 sonucDiv.className = "basarili";
                 
-                // Maskeleme fonksiyonu kaldırıldı, CSV'de ad soyad nasıl yazıyorsa doğrudan basılıyor
                 const tamAd = `${student.Ad || ''} ${student.Soyad || ''}`.trim();
                 const dersGorselAdi = `${student.Kod || ''} ${student.Ders || ''}`.trim();
                 
@@ -726,7 +771,6 @@ function searchExam() {
                         <span style="font-size: 1.1rem; color: #2c3e50;">Sayın / Dear</span><br>
                         <strong style="font-size: 1.4rem; color: #1a73e8; text-transform: uppercase;">${tamAd}</strong>
                     </div>
-                    <!-- 3. KURAL: Bireysel modda da tarih ve saat alanı flex ile yatayda ve dikeyde tam ortalandı -->
                     <div style="display: flex; justify-content: center; gap: 40px; text-align: center; margin: 0 20px 20px 20px; padding: 10px; background: #f8fafc; border-radius: 8px;">
                         <div>
                             <small style="color: #7f8c8d; display: block; font-size: 10px; font-weight: bold;">TARİH / DATE</small>
@@ -799,6 +843,7 @@ function searchExam() {
         }
     });
 }
+
 
 window.addEventListener("load", async () => {
     try {

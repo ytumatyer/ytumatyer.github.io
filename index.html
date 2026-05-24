@@ -577,7 +577,7 @@ function searchExam() {
             <div style="text-align: center; padding: 10px;">
                 <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⚠️ Eksik Seçim / Selection Required</strong>
                 <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Lütfen kayıtlı olduğunuz grubun dilini seçiniz.</span><br>
-                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select the language of the group you are registered in.</span>
+                <span style="font-size: 0.85rem; color: #718096; font-style: italic;">Please select the language of the section you are registered in.</span>
             </div>
         `;
         return; 
@@ -830,16 +830,28 @@ function searchExam() {
         },
         error: function() {
             sonucDiv.className = "hata";
-            sonucDiv.style.display = "block";
-            sonucDiv.innerHTML = `
-                <div style="text-align: center; padding: 10px;">
-    <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 5px;">⏳ Derslikler Henüz İlan Edilmedi / Not Announced Yet</strong>
-    <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600;">Seçtiğiniz sınav için derslik bilgileri henüz ilan edilmemiştir.</span><br>
-    <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; margin-top: 2px;">Lütfen daha sonra tekrar kontrol ediniz.</span>
-    <hr style="border: 0; border-top: 1px dashed #feb2b2; margin: 12px 0;">
-    <span style="font-size: 0.85rem; color: #718096; font-style: italic; display: block; line-height: 1.4;">Classroom information for the selected exam has not been announced yet.<br>Please check back later.</span>
-</div>
-            `;
+sonucDiv.style.display = "block";
+sonucDiv.innerHTML = `
+    <div style="text-align: center; padding: 10px;">
+        <!-- Başlık Bölümü -->
+        <strong style="font-size: 1.1rem; color: #9b2c2c; display: block; margin-bottom: 8px;">⏳ Derslikler Henüz İlan Edilmedi / Not Announced Yet</strong>
+        
+        <!-- Türkçe Bilgilendirme -->
+        <span style="font-size: 0.95rem; color: #4a5568; font-weight: 600; display: block; line-height: 1.5;">
+            Seçtiğiniz sınav için derslik bilgileri henüz ilan edilmemiştir.<br>
+            <span style="font-weight: 500; color: #718096; font-size: 0.9rem;">Lütfen daha sonra tekrar kontrol ediniz.</span>
+        </span>
+        
+        <!-- Ayırıcı Çizgi -->
+        <hr style="border: 0; border-top: 1px dashed #feb2b2; margin: 12px 0;">
+        
+        <!-- İngilizce Bilgilendirme -->
+        <span style="font-size: 0.85rem; color: #4a5568; font-style: italic; display: block; line-height: 1.5; font-weight: 500;">
+            Classroom information for the selected exam has not been announced yet.<br>
+            <span style="color: #718096; font-size: 0.8rem;">Please check back later.</span>
+        </span>
+    </div>
+`;           
         }
     });
 }

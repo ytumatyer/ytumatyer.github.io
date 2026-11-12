@@ -1,4 +1,4 @@
-﻿No;Ad;Soyad;Grup;Kod;Ders;Derslik ;Fakulte;Tarih;Saat
+﻿No;Ad;Soyad;Grup;Kod;Ders;Derslik ;Fakülte;Tarih;Saat
 250A1606;NA****;AB****;25;MAT2411;Diferansiyel Denklemler;FEF-BZ-D01;Fen-Edebiyat;14.11.2026;13:00
 22057016;NU****;AB****;18;MAT2411;Diferansiyel Denklemler;FEF-BZ-D01;Fen-Edebiyat;;
 23056901;IS****;AB****;14;MAT2411;Diferansiyel Denklemler;FEF-BZ-D01;Fen-Edebiyat;;
@@ -347,6 +347,7 @@
 23067049;ON****;BO****;26;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
 250A1900;KE****;BO****;27;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
 22012018;ÖM****;BR****;11;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
+23049044;DE****;BU****;24;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
 240A1038;FE****;BU****;27;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
 24067045;RA****;BU****;26;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
 24067026;Yİ****;BU****;26;MAT2411;Diferansiyel Denklemler;FEF-BZ-D07;Fen-Edebiyat;;
@@ -996,6 +997,7 @@
 20046077;AL****;KA****;20;MAT2411;Diferansiyel Denklemler;FEF-B1-A10;Fen-Edebiyat;;
 18041033;SÜ****;KA****;19;MAT2411;Diferansiyel Denklemler;FEF-B1-A10;Fen-Edebiyat;;
 17057010;GÜ****;KA****;19;MAT2411;Diferansiyel Denklemler;FEF-B1-A10;Fen-Edebiyat;;
+23023608;AR****;OR****;11;MAT2411;Diferansiyel Denklemler;FEF-B1-D11;Fen-Edebiyat;;
 24054087;FU****;KA****;16;MAT2411;Diferansiyel Denklemler;FEF-B1-D11;Fen-Edebiyat;;
 21065115;OS****;KE****;25;MAT2411;Diferansiyel Denklemler;FEF-B1-D11;Fen-Edebiyat;;
 230A1072;AL****;KE****;27;MAT2411;Diferansiyel Denklemler;FEF-B1-D11;Fen-Edebiyat;;
